@@ -75,7 +75,7 @@ export default {
             span {
                 font-weight: 500;
             }
-            .button {
+            .button { 
                 font-size: 20px;
                 align-self: flex-start;
             }

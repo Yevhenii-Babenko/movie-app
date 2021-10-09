@@ -1,6 +1,11 @@
 <template>
   <div class="home">
+      <!-- Hero -->
     <Hero />
+    <!-- Search -->
+    <div class="contaimer search"><input type="text" placeholder="Search" v-model.lazy="searchInput">
+    <button v-show="searchInput !== ''" class="button">Clear Search</button></div>
+    <!-- Movies -->
     <div class="container movies">
       <div id="movie-grid" class="movies-grid">
         <div class="movie" v-for="(movie, index) in movies" :key="index">
@@ -35,6 +40,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -46,6 +52,7 @@ export default Vue.extend({
   data() {
     return {
       movies: [],
+      searchInput: '',
     }
   },
   async fetch() {
@@ -65,6 +72,10 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss">
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
 .home {
   .loading {
     padding-top: 120px;
@@ -99,7 +110,7 @@ export default Vue.extend({
         grid-template-columns: repeat(2, 1fr);
       }
       @media (min-width: 750px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
       @media (min-width: 1100px) {
         grid-template-columns: repeat(4, 1fr);

@@ -3,13 +3,24 @@
     <!-- Hero -->
     <Hero />
     <!-- Search -->
-    <div class="container search">
-      <input @keyup.enter="$fetch" type="text" placeholder="Search" v-model.lazy="searchInput" />
-      <button @click="clearSearchInput" v-show="searchInput !== ''" class="button">Clear Search</button>
+    <div class="search">
+      <input
+        @keyup.enter="$fetch"
+        type="text"
+        placeholder="Search"
+        v-model.lazy="searchInput"
+      />
+      <button
+        @click="clearSearchInput"
+        v-show="searchInput !== ''"
+        class="button"
+      >
+        Clear Search
+      </button>
     </div>
-
+    <Loading v-if="$fetchState.pending" />
     <!-- Movies -->
-    <div class="container movies">
+    <div v-else class="container movies">
       <div id="movie-grid" class="movies-grid" v-if="!searchInput">
         <div class="movie" v-for="(movie, index) in movies" :key="index">
           <div class="movie-img">
@@ -43,9 +54,13 @@
           </div>
         </div>
       </div>
-<!-- Searhed movie display -->
+      <!-- Searhed movie display -->
       <div id="movie-grid" class="movies-grid" v-else>
-        <div class="movie" v-for="(movie, index) in searchedMovies" :key="index">
+        <div
+          class="movie"
+          v-for="(movie, index) in searchedMovies"
+          :key="index"
+        >
           <div class="movie-img">
             <img
               :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -78,17 +93,32 @@
         </div>
       </div>
     </div>
-
-    
-
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import axios from 'axios'
+import Loading from '~/components/Loading.vue'
 
 export default Vue.extend({
+  head() {
+    return {
+      title: "The Latest' Streaming Movies App",
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Get all the lastest steaming movies',
+        },
+         {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'movies, streaming',
+        }
+      ],
+    }
+  },
   data() {
     return {
       movies: [],
@@ -97,8 +127,11 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    (this.searchInput === '') ? await this.getMovies() : await this.getSearchedMovies()
+    this.searchInput === ''
+      ? await this.getMovies()
+      : await this.getSearchedMovies()
   },
+  fetchDelay: 1000,
   methods: {
     async getMovies() {
       const data = axios.get(
@@ -110,7 +143,9 @@ export default Vue.extend({
       })
     },
     async getSearchedMovies() {
-      const data = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${this.searchInput}`)
+      const data = axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${this.searchInput}`
+      )
       const result = await data
       result.data.results.forEach((movie: any) => {
         this.searchedMovies.push(movie)
@@ -119,15 +154,11 @@ export default Vue.extend({
     clearSearchInput() {
       this.searchInput = ''
       this.searchedMovies = []
-    }
+    },
   },
 })
 </script>
 <style lang="scss">
-.container {
-  width: 1100px;
-  margin: 0 auto;
-}
 .home {
   .loading {
     padding-top: 120px;

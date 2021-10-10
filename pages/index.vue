@@ -3,7 +3,7 @@
     <!-- Hero -->
     <Hero />
     <!-- Search -->
-    <div class="search">
+    <div class="search container">
       <input
         @keyup.enter="$fetch"
         type="text"

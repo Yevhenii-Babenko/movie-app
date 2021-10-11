@@ -100,9 +100,15 @@
 import Vue from 'vue'
 import axios from 'axios'
 import Loading from '~/components/Loading.vue'
+import Hero from '~/components/Hero.vue'
 import { MovieTypes } from '~/types/moviesTypes.interfaces'
+import api from '~/services/api'
 
-export default Vue.extend({
+export default {
+  components: {
+    Loading,
+    Hero
+  },
   head() {
     return {
       title: "The Latest' Streaming Movies App",
@@ -112,11 +118,11 @@ export default Vue.extend({
           name: 'description',
           content: 'Get all the lastest steaming movies',
         },
-         {
+        {
           hid: 'keywords',
           name: 'keywords',
           content: 'movies, streaming',
-        }
+        },
       ],
     }
   },
@@ -124,25 +130,37 @@ export default Vue.extend({
     return {
       movies: [],
       searchedMovies: [],
-      searchInput: '',
+      searchInput: '' as String,
+    }
+  },
+  props: {
+    listOfMivies: {
+      type: Array,
+      default: () => [],
     }
   },
   async fetch() {
+    await api.getAllMovies().then((res:any) => console.log(res.data.results))
     this.searchInput === ''
       ? await this.getMovies()
       : await this.getSearchedMovies()
   },
   fetchDelay: 1000,
   methods: {
-    async getMovies(): Promise<void> {
-      const data = axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1`
-      )
-      const result = await data
-      console.log(result.data.results)
-      result.data.results.forEach((movie: never) => {
-        this.movies.push(movie)
-      })
+    async getMovies(): Promise<MovieTypes> {
+      try {
+        const data = axios.get(
+          `https://api.themoviedb.org/3/movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1`
+        )
+        const result = await data
+        console.log(result.data.results)
+        return result.data.results.forEach((movie: never) => {
+          this.movies.push(movie)
+          
+        })
+      } catch (error) {
+        console.error(error)
+      }
     },
     async getSearchedMovies(): Promise<void> {
       const data = axios.get(
@@ -158,7 +176,7 @@ export default Vue.extend({
       this.searchedMovies = []
     },
   },
-})
+}
 </script>
 <style lang="scss">
 .home {

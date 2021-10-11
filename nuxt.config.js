@@ -1,6 +1,7 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  mode: 'spa',
   target: 'static',
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'movie-app',
     htmlAttrs: {
@@ -13,7 +14,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon' }
     ]
   },
 

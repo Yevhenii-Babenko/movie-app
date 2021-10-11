@@ -100,6 +100,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import Loading from '~/components/Loading.vue'
+import { MovieTypes } from '~/types/moviesTypes.interfaces'
 
 export default Vue.extend({
   head() {
@@ -133,21 +134,22 @@ export default Vue.extend({
   },
   fetchDelay: 1000,
   methods: {
-    async getMovies() {
+    async getMovies(): Promise<void> {
       const data = axios.get(
         `https://api.themoviedb.org/3/movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1`
       )
       const result = await data
-      result.data.results.forEach((movie: any) => {
+      console.log(result.data.results)
+      result.data.results.forEach((movie: never) => {
         this.movies.push(movie)
       })
     },
-    async getSearchedMovies() {
+    async getSearchedMovies(): Promise<void> {
       const data = axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${this.searchInput}`
       )
       const result = await data
-      result.data.results.forEach((movie: any) => {
+      result.data.results.forEach((movie: never) => {
         this.searchedMovies.push(movie)
       })
     },

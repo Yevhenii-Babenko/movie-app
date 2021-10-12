@@ -97,17 +97,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import axios from 'axios'
 import Loading from '~/components/Loading.vue'
 import Hero from '~/components/Hero.vue'
-import { MovieTypes } from '~/types/moviesTypes.interfaces'
+import { Result } from '~/types/moviesTypes.interfaces'
 import api from '~/services/api'
 
 export default {
   components: {
     Loading,
-    Hero
+    Hero,
   },
   head() {
     return {
@@ -128,8 +127,8 @@ export default {
   },
   data() {
     return {
-      movies: [],
-      searchedMovies: [],
+      movies: [] as Array<Result>,
+      searchedMovies: [] as Array<Result>,
       searchInput: '' as String,
     }
   },
@@ -137,27 +136,35 @@ export default {
     listOfMivies: {
       type: Array,
       default: () => [],
-    }
+    },
   },
   async fetch() {
-    await api.getAllMovies().then((res:any) => console.log(res.data.results))
-    this.searchInput === ''
+    await this.getStreamingMoviesList()
+    await this.getMovies()
+    await this.getSearchedMovies()
+    /* this.searchInput === ''
       ? await this.getMovies()
-      : await this.getSearchedMovies()
+      : await this.getSearchedMovies() */
   },
   fetchDelay: 1000,
   methods: {
-    async getMovies(): Promise<MovieTypes> {
+    async getStreamingMoviesList(): Promise<void> {
+      const data = await api.getAllMovies()
+      const result: [] = data.data.results
+      return result.forEach((movie: Result) => this.movies.push(movie))
+    },
+
+    async getMovies(): Promise<void> {
       try {
         const data = axios.get(
           `https://api.themoviedb.org/3/movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1`
         )
         const result = await data
-        console.log(result.data.results)
-        return result.data.results.forEach((movie: never) => {
-          this.movies.push(movie)
-          
-        })
+        console.log('getMovies',result)
+        /* return result.data.results.forEach((movie: never) => {
+          this.movies.push(movie) */
+
+        /* }) */
       } catch (error) {
         console.error(error)
       }
@@ -167,7 +174,9 @@ export default {
         `https://api.themoviedb.org/3/search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${this.searchInput}`
       )
       const result = await data
-      result.data.results.forEach((movie: never) => {
+
+      console.log('result of search: ', result)
+      result.data.results.forEach((movie: Result) => {
         this.searchedMovies.push(movie)
       })
     },

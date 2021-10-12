@@ -43,7 +43,11 @@
 <script lang="ts">
 import Loading from '~/components/Loading.vue'
 import api from '~/services/api'
-import { Result } from '~/types/moviesTypes.interfaces'
+import {
+  RespAllMoviesDataStruct,
+  Result,
+  Movie,
+} from '~/types/moviesTypes.interfaces'
 
 export default {
   components: { Loading },
@@ -51,7 +55,7 @@ export default {
 
   data() {
     return {
-      movie: '' as unknown as Array<Result>,
+      movie: {} as Movie[],
     }
   },
   async fetch() {
@@ -60,10 +64,14 @@ export default {
   fetchDelay: 1000,
   methods: {
     async getSingleMovie() {
-      const response = await api.getSingleMovieById(
-        this.$route.params.movieid as unknown as number
-      )
-      this.movie = response.data as Array<Result>
+      try {
+        const response = await api.getSingleMovieById(
+          this.$route.params.movieid as unknown as number
+        )
+        this.movie = response.data
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }

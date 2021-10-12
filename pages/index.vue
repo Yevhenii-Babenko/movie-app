@@ -97,7 +97,6 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
 import Loading from '~/components/Loading.vue'
 import Hero from '~/components/Hero.vue'
 import { Result } from '~/types/moviesTypes.interfaces'
@@ -129,56 +128,35 @@ export default {
     return {
       movies: [] as Array<Result>,
       searchedMovies: [] as Array<Result>,
-      searchInput: '' as String,
+      searchInput: '' as string,
     }
   },
-  props: {
-    listOfMivies: {
-      type: Array,
-      default: () => [],
-    },
-  },
   async fetch() {
-    await this.getStreamingMoviesList()
-    await this.getMovies()
-    await this.getSearchedMovies()
-    /* this.searchInput === ''
+    this.searchInput === ''
       ? await this.getMovies()
-      : await this.getSearchedMovies() */
+      : await this.getSearchedMovies()
   },
   fetchDelay: 1000,
   methods: {
-    async getStreamingMoviesList(): Promise<void> {
-      const data = await api.getAllMovies()
-      const result: [] = data.data.results
-      return result.forEach((movie: Result) => this.movies.push(movie))
-    },
-
     async getMovies(): Promise<void> {
       try {
-        const data = axios.get(
-          `https://api.themoviedb.org/3/movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1`
+        const response = await api.getAllMovies()
+        response.data.results.forEach((movie: Result) =>
+          this.movies.push(movie)
         )
-        const result = await data
-        console.log('getMovies',result)
-        /* return result.data.results.forEach((movie: never) => {
-          this.movies.push(movie) */
-
-        /* }) */
       } catch (error) {
         console.error(error)
       }
     },
     async getSearchedMovies(): Promise<void> {
-      const data = axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${this.searchInput}`
-      )
-      const result = await data
-
-      console.log('result of search: ', result)
-      result.data.results.forEach((movie: Result) => {
-        this.searchedMovies.push(movie)
-      })
+      try {
+        const response = await api.findSearchingMovies(this.searchInput)
+        response.data.results.forEach((movie: Result) => {
+          this.searchedMovies.push(movie)
+        })
+      } catch (error) {
+        console.error(error)
+      }
     },
     clearSearchInput() {
       this.searchInput = ''

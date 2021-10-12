@@ -40,20 +40,18 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts">
 import Loading from '~/components/Loading.vue'
+import api from '~/services/api'
+import { Result } from '~/types/moviesTypes.interfaces'
+
 export default {
   components: { Loading },
   name: 'single-movie',
-  head() {
-      return {
-          title: this.movie.title,
-      }
-  },
+
   data() {
     return {
-      movie: '',
+      movie: '' as unknown as Array<Result>,
     }
   },
   async fetch() {
@@ -62,15 +60,15 @@ export default {
   fetchDelay: 1000,
   methods: {
     async getSingleMovie() {
-      const data = axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US`
+      const response = await api.getSingleMovieById(
+        this.$route.params.movieid as unknown as number
       )
-      const result = await data
-      this.movie = result.data
+      this.movie = response.data as Array<Result>
     },
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .single-movie {
   color: #fff;

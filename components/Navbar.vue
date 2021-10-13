@@ -4,11 +4,25 @@
       <nav class="navbar">
         <ul class="navbar__list">
           <li class="navbar__item">
-            <NuxtLink class="navbar__link" :to="{ name: 'index' }">Home</NuxtLink>
+            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
+              >Home</NuxtLink
+            >
           </li>
-          <li class="navbar__item">News</li>
-          <li class="navbar__item">Contact</li>
-          <li class="navbar__item">About</li>
+          <li class="navbar__item">
+            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
+              >News</NuxtLink
+            >
+          </li>
+          <li class="navbar__item">
+            <NuxtLink class="navbar__link" :to="{ name: '/home' }">
+              Contact</NuxtLink
+            >
+          </li>
+          <li class="navbar__item">
+            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
+              >About</NuxtLink
+            >
+          </li>
         </ul>
       </nav>
     </div>
@@ -40,26 +54,44 @@ $header-bg-color: #333;
   @include padding($padding: 0);
 }
 @mixin theme($theme: $header-bg-color) {
-  background-color: $header-bg-color;
+  // background-color: $header-bg-color;
   border: $header-bg-color;
 }
 
 .wrapper {
-  padding: 30px 0;
+  padding: 40px 0;
 }
 .navbar {
   @include theme($theme: $header-bg-color);
+  @include display-flex;
   color: #fff;
-  // display: block;
   @include margin($margin: 0);
   overflow: hidden;
   &__list {
     @include display-flex;
     @include list-style;
-    gap: 10px;
-  };
+    flex-grow: 1;
+    gap: 5%;
+  }
+  &__item {
+    &:first-of-type .navbar__link {
+      color: red;
+      transition: 0.3s ease-in-out all;
+      &:hover {
+        color: #fff;
+        transition: 0.5s ease-in-out all;
+      }
+    }
+  }
   &__link {
-    color: red;
+    &:hover {
+      color: red;
+      transition: 0.3s ease-in-out all;
+    }
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s ease-in-out all;
+    font-weight: bold;
   }
 }
 </style>

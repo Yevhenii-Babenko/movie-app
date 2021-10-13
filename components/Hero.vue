@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <section class="hero">
     <img class="img" src="../assets/imgs/movieHero.jpg" alt="main bunner img" />
     <div class="text-container">
       <div class="text">
@@ -8,7 +8,7 @@
         <a href="#movie-grid" class="button">View Movies</a>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

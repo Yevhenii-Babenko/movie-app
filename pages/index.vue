@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
+  <main class="home">
     <Hero />
     <!-- <Search /> -->
     <MovieGrid />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

@@ -1,111 +1,24 @@
 <template>
   <div class="home">
-    <!-- Hero -->
     <Hero />
-    <!-- Search -->
-    <div class="search container">
-      <input
-        @keyup.enter="$fetch"
-        type="text"
-        placeholder="Search"
-        v-model.lazy="searchInput"
-      />
-      <button
-        @click="clearSearchInput"
-        v-show="searchInput !== ''"
-        class="button"
-      >
-        Clear Search
-      </button>
-    </div>
-    <Loading v-if="$fetchState.pending" />
-    <!-- Movies -->
-    <div v-else class="container movies">
-      <div id="movie-grid" class="movies-grid" v-if="!searchInput">
-        <div class="movie" v-for="(movie, index) in movies" :key="index">
-          <div class="movie-img">
-            <img
-              :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-              alt="poster"
-            />
-            <p class="review">{{ movie.vote_average }}</p>
-            <p class="overview">{{ movie.overview }}</p>
-          </div>
-          <div class="info">
-            <p class="title">
-              {{ movie.title.slice(0, 25) }}
-              <span v-if="movie.title.length > 25">...</span>
-            </p>
-            <p class="release">
-              Released:
-              {{
-                new Date(movie.release_date).toLocaleString('en-us', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                })
-              }}
-            </p>
-            <NuxtLink
-              class="button button-light"
-              :to="{ name: 'movies-movieid', params: { movieid: movie.id } }"
-              >Get More Info</NuxtLink
-            >
-          </div>
-        </div>
-      </div>
-      <!-- Searhed movie display -->
-      <div id="movie-grid" class="movies-grid" v-else>
-        <div
-          class="movie"
-          v-for="(movie, index) in searchedMovies"
-          :key="index"
-        >
-          <div class="movie-img">
-            <img
-              :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-              alt="poster"
-            />
-            <p class="review">{{ movie.vote_average }}</p>
-            <p class="overview">{{ movie.overview }}</p>
-          </div>
-          <div class="info">
-            <p class="title">
-              {{ movie.title.slice(0, 25) }}
-              <span v-if="movie.title.length > 25">...</span>
-            </p>
-            <p class="release">
-              Released:
-              {{
-                new Date(movie.release_date).toLocaleString('en-us', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                })
-              }}
-            </p>
-            <NuxtLink
-              class="button button-light"
-              :to="{ name: 'movies-movieid', params: { movieid: movie.id } }"
-              >Get More Info</NuxtLink
-            >
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- <Search /> -->
+    <MovieGrid />
   </div>
 </template>
 
 <script lang="ts">
-import Loading from '~/components/Loading.vue'
+import Vue from 'vue'
 import Hero from '~/components/Hero.vue'
+import Search from '~/components/Loading.vue'
+import MovieGrid from '~/components/MovieGrid.vue'
 import { Result } from '~/types/moviesTypes.interfaces'
 import api from '~/services/api'
 
-export default {
+export default Vue.extend({
   components: {
-    Loading,
     Hero,
+    MovieGrid,
+    Search,
   },
   head() {
     return {
@@ -124,46 +37,52 @@ export default {
       ],
     }
   },
-  data() {
+  data(): { movies:Array<Result>, searchedMovies: Array<Result>, searchInput: string } {
     return {
-      movies: [] as Array<Result>,
-      searchedMovies: [] as Array<Result>,
-      searchInput: '' as string,
+      movies: [],
+      searchedMovies: [],
+      searchInput: '',
     }
   },
   async fetch() {
+    // await this.getMovies()
+  },
+  /* async fetch() {
     this.searchInput === ''
       ? await this.getMovies()
       : await this.getSearchedMovies()
-  },
+  }, */
   fetchDelay: 1000,
   methods: {
-    async getMovies(): Promise<void> {
+    async getMovies(): Promise<any> {
+      let moviesArr: Result[] = []
       try {
         const response = await api.getAllMovies()
         response.data.results.forEach((movie: Result) =>
-          this.movies.push(movie)
+          moviesArr.push(movie)
         )
+        console.log(moviesArr, 'moviesArr')
+        return this.movies = moviesArr
       } catch (error) {
         console.error(error)
       }
     },
-    async getSearchedMovies(): Promise<void> {
-      try {
-        const response = await api.findSearchingMovies(this.searchInput)
-        response.data.results.forEach((movie: Result) => {
-          this.searchedMovies.push(movie)
-        })
-      } catch (error) {
-        console.error(error)
-      }
-    },
+    // async getSearchedMovies(): Promise<void> {
+    //   try {
+    //     const response = await api.findSearchingMovies(this.searchInput)
+    //     response.data.results.forEach((movie: Result) => {
+    //       this.searchedMovies.push(movie)
+    //     })
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // },
     clearSearchInput() {
-      this.searchInput = ''
-      this.searchedMovies = []
+      // this.searchInput = ''
+    //   this.searchedMovies = []
     },
   },
-}
+})
 </script>
 <style lang="scss">
 .home {

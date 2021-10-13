@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import Loading from '~/components/Loading.vue'
 import api from '~/services/api'
 import {
@@ -49,13 +50,13 @@ import {
   Movie,
 } from '~/types/moviesTypes.interfaces'
 
-export default {
+export default Vue.extend({
   components: { Loading },
   name: 'single-movie',
 
-  data() {
+  data(): {movie: []} {
     return {
-      movie: {} as Movie[],
+      movie: [],
     }
   },
   async fetch() {
@@ -74,7 +75,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

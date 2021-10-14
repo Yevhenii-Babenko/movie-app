@@ -4,31 +4,17 @@
       <nav class="navbar">
         <ul class="navbar__list">
           <li class="navbar__item">
-            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
-              >Home</NuxtLink
+            <NuxtLink class="navbar__link" :to="{ name: 'register' }"
+              >Register</NuxtLink
             >
           </li>
           <li class="navbar__item">
-            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
-              >News</NuxtLink
-            >
-          </li>
-          <li class="navbar__item">
-            <NuxtLink class="navbar__link" :to="{ name: '/home' }">
-              Contact</NuxtLink
-            >
-          </li>
-          <li class="navbar__item">
-            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
-              >About</NuxtLink
+            <NuxtLink class="navbar__link" :to="{ name: 'login' }"
+              >Log In</NuxtLink
             >
           </li>
         </ul>
       </nav>
-      <template>
-        <nuxt-link class="navbar-item" to="/register">Register</nuxt-link>
-        <nuxt-link class="navbar-item" to="/login">Log In</nuxt-link>
-      </template>
     </div>
   </header>
 </template>
@@ -69,13 +55,17 @@ $header-bg-color: #333;
   @include theme($theme: $header-bg-color);
   @include display-flex;
   color: #fff;
-  @include margin($margin: 0);
+  // @include margin($margin: 0);
   overflow: hidden;
+  width: 50%;
+  margin-left: auto;
   &__list {
     @include display-flex;
     @include list-style;
     flex-grow: 1;
     gap: 5%;
+    justify-content: flex-end;
+    padding-right: 5%;
   }
   &__item {
     &:first-of-type .navbar__link {

@@ -37,6 +37,9 @@
           </p>
         </div>
       </div>
+      <div>
+        <h1>{{auth}} </h1>
+      </div>
     </div>
   </section>
 </template>
@@ -45,17 +48,16 @@
 <script lang="ts">
 import Vue from 'vue'
 import { getters, RootState } from '~/store'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default Vue.extend({
   layout: 'auth',
   methods: {
-    async login() {
-      console.log('this store', this.$store)
-      console.log('mapActions([setLog])', mapActions(['fetchThings']))
-      
+    login() {
+      this.$store.dispatch('setLog')
     },
   },
+  computed: mapGetters(['auth']),
 })
 </script>
 

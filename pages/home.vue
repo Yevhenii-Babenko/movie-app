@@ -1,6 +1,6 @@
 <template>
   <main class="home">
-    <Hero />
+    <!-- <Hero /> -->
     <!-- <Search /> -->
     <MovieGrid />
   </main>
@@ -44,6 +44,9 @@ export default Vue.extend({
       searchInput: '',
     }
   },
+  created() {
+    this.getMovies()
+  },
   async fetch() {
     // await this.getMovies()
   },
@@ -54,15 +57,10 @@ export default Vue.extend({
   }, */
   fetchDelay: 1000,
   methods: {
-    async getMovies(): Promise<any> {
-      let moviesArr: Result[] = []
+    async getMovies(): Promise<void> {
       try {
-        const response = await api.getAllMovies()
-        response.data.results.forEach((movie: Result) =>
-          moviesArr.push(movie)
-        )
-        console.log(moviesArr, 'moviesArr')
-        return this.movies = moviesArr
+        this.movies = await api.getAllMovies()
+        .then((response) => response.data.results)
       } catch (error) {
         console.error(error)
       }

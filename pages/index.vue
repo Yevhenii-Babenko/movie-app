@@ -2,10 +2,11 @@
   <section class="section">
     <Hero />
     <!-- <Search /> -->
-    <MovieGrid />
+    <div>
+      <h1 style="color: red; text-align: center; margin: 20px">{{ auth }}</h1>
+    </div>
+    <MovieGrid v-bind:movies="movies" />
     <Footer />
-  <div> {{this.$store.getters['name']}} </div>
-  <div> {{this.$store.getters['auth']}} </div>
   </section>
 </template>
 
@@ -15,17 +16,14 @@ import Search from '~/components/Loading.vue'
 import MovieGrid from '~/components/MovieGrid.vue'
 import Footer from '~/components/Footer.vue'
 import Vue from 'vue'
-/* import { Component, Vue } from 'nuxt-property-decorator' */
-import { getters, RootState } from '~/store'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default Vue.extend({
-  layout: 'auth',
-  mounted() {
-    const name = this.$store.getters['name'] as ReturnType<typeof getters.name>
+  layout: 'auth' ? 'default' : 'authorisation',
+  async mounted() {
+    this.$store.dispatch('fetchMovies')
   },
-  data() {
-    return { name: this.$store.getters['name']}
-  },
+  computed: mapGetters(['movies', 'auth']),
   components: {
     Hero,
     MovieGrid,
@@ -35,8 +33,29 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-.title {
-  color: blue;
+<style lang="scss" scoped>
+.home {
+  .loading {
+    padding-top: 120px;
+    align-items: flex-start;
+  }
+  .search {
+    display: flex;
+    padding: 32px 16px;
+    input {
+      max-width: 350px;
+      width: 100%;
+      padding: 12px 6px;
+      font-size: 14px;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    .button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
 }
 </style>

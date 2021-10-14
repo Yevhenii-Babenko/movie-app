@@ -12,18 +12,21 @@ export type RootState = ReturnType<typeof state>
 export const getters: GetterTree<RootState, RootState> = {
     name: state => state.name,
     auth: state => state.auth,
+    movies: state => state.movies,
 }
 export const mutations: MutationTree<RootState> = {
     CHANGE_NAME: (state, newName: string) => (state.name = newName),
-    LOGGED: (state, log: boolean) => (state.auth = log)
+    LOGGED: (state, log: boolean) => (state.auth = log),
+    UPDATEMOVIES: (state, payload: []) => (state.movies = payload)
 }
 export const actions: ActionTree<RootState, RootState> = {
-    async fetchThings({ state, commit }) {
-        const things = await this.$axios.$get('movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1')
-        console.log(things)
-        commit('CHANGE_NAME', state.movies)
+    async fetchMovies({ commit }) {
+        const movies = await this.$axios.$get('movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1')
+            .then(data => data.results);
+        console.log('movies', movies)
+        commit('UPDATEMOVIES', movies)
     },
-    setLog({state, commit}){
-        commit('LOGGED', state.auth = true)
+    setLog({ commit }) {
+        commit('LOGGED', true)
     }
 }

@@ -25,7 +25,7 @@ export const mutations: MutationTree<RootState> = {
     UPDATEMOVIES: (state, payload: []) => (state.movies = payload),
     UPDATASEARCHEDMOVIES: (state, payload: []) => (state.searchedMovies = payload),
     UODATEINPUTFIELD: (state, payload) => (state.searchInput = payload),
-    CLEARINPUT: (state, payload) => (state.searchInput = payload)
+    CLEARINPUT: (state, payload) => (state.searchInput = payload),
 }
 export const actions: ActionTree<RootState, RootState> = {
     async fetchMovies({ commit }) {

@@ -2,10 +2,8 @@
   <section class="section">
     <Hero />
     <Search />
-    <div>
-      <h1 style="color: red; text-align: center; margin: 20px">{{ auth }}</h1>
-    </div>
-    <MovieGrid v-bind:movies="movies" />
+    <Loading v-if="this.isLoading" />
+    <MovieGrid v-else />
     <Footer />
   </section>
 </template>
@@ -15,6 +13,7 @@ import Hero from '~/components/Hero.vue'
 import Search from '~/components/Search.vue'
 import MovieGrid from '~/components/MovieGrid.vue'
 import Footer from '~/components/Footer.vue'
+import Loading from '~/components/Loading.vue'
 import Vue from 'vue'
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 
@@ -23,12 +22,13 @@ export default Vue.extend({
   async mounted() {
     this.$store.dispatch('fetchMovies')
   },
-  computed: mapGetters(['movies', 'auth']),
+  computed: mapGetters(['movies', 'auth', 'isLoading']),
   components: {
     Hero,
     MovieGrid,
     Search,
     Footer,
+    Loading,
   },
 })
 </script>

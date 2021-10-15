@@ -22,12 +22,12 @@ export default Vue.extend({
     ...mapActions(['fetctSearchedMovies']),
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
     clearSearchInput() {
-      this.CLEARINPUT('');
-      this.UPDATASEARCHEDMOVIES([]);
+      this.CLEARINPUT('')
+      this.UPDATASEARCHEDMOVIES([])
     },
-    inputFetchHandler(event: any) {
+    inputFetchHandler(event: { target: { value: string } }) {
       this.fetctSearchedMovies(event.target.value)
-      return event.target.value = ''
+      return (event.target.value = '')
     },
   },
 })

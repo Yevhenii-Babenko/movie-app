@@ -1,10 +1,7 @@
 <template>
-  <!-- <Loading v-if="$fetchState.pending" /> -->
-  <!-- Movies -->
-  <!-- <div v-else class="container movies"> -->
   <section class="container movies">
-    <div id="movie-grid" class="movies-grid">
-      <div class="movie" v-for="(movie, index) in movies" :key="index">
+    <div id="movie-grid" class="movies-grid" v-if="searchMovies.length">
+      <div class="movie" v-for="(movie, index) in searchMovies" :key="index">
         <div class="movie-img">
           <img
             :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -36,9 +33,8 @@
         </div>
       </div>
     </div>
-    <!-- Searhed movie display -->
-    <div id="movie-grid" class="movies-grid">
-      <div class="movie" v-for="(movie, index) in searchedMovies" :key="index">
+    <div id="movie-grid" class="movies-grid" v-else>
+      <div class="movie" v-for="(movie, index) in movies" :key="index">
         <div class="movie-img">
           <img
             :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -73,26 +69,14 @@
   </section>
 </template>
 
-<script>
-import Loading from '~/components/Loading.vue'
-export default {
-  props: {
-    movies: {
-      type: Array,
-      required: false,
-      default: [],
-    },
-    searchedMovies: {
-      type: Array,
-      required: false,
-      default: [],
-    },
-  },
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex'
+
+export default Vue.extend({
+  computed: mapGetters(['movies', 'searchMovies']),
   name: 'MovieGrid',
-  components: {
-    Loading,
-  },
-}
+})
 </script>
 
 <style lang="scss" scoped>

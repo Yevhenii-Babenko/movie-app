@@ -45,7 +45,7 @@ export default Vue.extend({
     }
   },
   created() {
-    this.getMovies()
+    // this.getMovies()
   },
   async fetch() {
     // await this.getMovies()

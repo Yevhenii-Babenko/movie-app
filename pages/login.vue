@@ -37,9 +37,6 @@
           </p>
         </div>
       </div>
-      <div>
-        <h1>{{auth}} </h1>
-      </div>
     </div>
   </section>
 </template>
@@ -55,6 +52,7 @@ export default Vue.extend({
   methods: {
     login() {
       this.$store.dispatch('setLog')
+      this.$router.push('/')
     },
   },
   computed: mapGetters(['auth']),

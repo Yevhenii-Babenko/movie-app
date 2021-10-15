@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <Hero />
-    <!-- <Search /> -->
+    <Search />
     <div>
       <h1 style="color: red; text-align: center; margin: 20px">{{ auth }}</h1>
     </div>
@@ -12,14 +12,14 @@
 
 <script lang="ts">
 import Hero from '~/components/Hero.vue'
-import Search from '~/components/Loading.vue'
+import Search from '~/components/Search.vue'
 import MovieGrid from '~/components/MovieGrid.vue'
 import Footer from '~/components/Footer.vue'
 import Vue from 'vue'
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default Vue.extend({
-  layout: 'auth' ? 'default' : 'authorisation',
+  layout: 'authorisation',
   async mounted() {
     this.$store.dispatch('fetchMovies')
   },

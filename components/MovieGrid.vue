@@ -3,7 +3,7 @@
   <!-- Movies -->
   <!-- <div v-else class="container movies"> -->
   <section class="container movies">
-    <div id="movie-grid" class="movies-grid" v-if="!searchInput">
+    <div id="movie-grid" class="movies-grid">
       <div class="movie" v-for="(movie, index) in movies" :key="index">
         <div class="movie-img">
           <img
@@ -37,7 +37,7 @@
       </div>
     </div>
     <!-- Searhed movie display -->
-    <div id="movie-grid" class="movies-grid" v-else>
+    <div id="movie-grid" class="movies-grid">
       <div class="movie" v-for="(movie, index) in searchedMovies" :key="index">
         <div class="movie-img">
           <img
@@ -79,7 +79,13 @@ export default {
   props: {
     movies: {
       type: Array,
-      required: true,
+      required: false,
+      default: [],
+    },
+    searchedMovies: {
+      type: Array,
+      required: false,
+      default: [],
     },
   },
   name: 'MovieGrid',

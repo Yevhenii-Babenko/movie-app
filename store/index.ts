@@ -23,7 +23,9 @@ export const mutations: MutationTree<RootState> = {
     CHANGE_NAME: (state, newName: string) => (state.name = newName),
     LOGGED: (state, log: boolean) => (state.auth = log),
     UPDATEMOVIES: (state, payload: []) => (state.movies = payload),
-    UPDATASEARCHEDMOVIES: (state, payload: []) => (state.searchedMovies = payload)
+    UPDATASEARCHEDMOVIES: (state, payload: []) => (state.searchedMovies = payload),
+    UODATEINPUTFIELD: (state, payload) => (state.searchInput = payload),
+    CLEARINPUT: (state, payload) => (state.searchInput = payload)
 }
 export const actions: ActionTree<RootState, RootState> = {
     async fetchMovies({ commit }) {
@@ -39,11 +41,12 @@ export const actions: ActionTree<RootState, RootState> = {
     setLog({ commit }) {
         commit('LOGGED', true)
     },
-    async fetctSearchedMovies({ commit }) {
+    async fetctSearchedMovies(context, input) {
         try {
-            const searchedMovies = await this.$axios.$get('search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=' + this.getters.inputSearchMovie)
+            const searchedMovies = await this.$axios.$get(`search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${input}`)
                 .then(data => data.results);
-            commit('UPDATASEARCHEDMOVIES', searchedMovies)
+                context.commit('UODATEINPUTFIELD', input)
+                context.commit('UPDATASEARCHEDMOVIES', searchedMovies)
             return searchedMovies;
         } catch (error) {
             console.error('error fetching searched movies', error)

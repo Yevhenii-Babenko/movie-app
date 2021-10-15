@@ -1,6 +1,6 @@
 <template>
   <div class="search container">
-    <input @keyup.enter="inputHandler" type="text" placeholder="Search" />
+    <input @keyup.enter="inputFetchHandler" type="text" placeholder="Search" />
     <button
       @click="clearSearchInput"
       v-show="inputSearchMovie !== ''"
@@ -8,26 +8,24 @@
     >
       Clear Search
     </button>
-    <div>{{ searchMovies }}</div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'Search',
   computed: mapGetters(['inputSearchMovie', 'searchMovies']),
   methods: {
     ...mapActions(['fetctSearchedMovies']),
+    ...mapMutations(['CLEARINPUT']),
     clearSearchInput() {
-      // this.searchInput = ''
-      //   this.searchedMovies = []
+      this.CLEARINPUT('')
     },
-    inputHandler(event: any) {
-      console.log(event.target.value)
-      return (event.target.value)
+    inputFetchHandler(event: any) {
+      this.fetctSearchedMovies(event.target.value)
     },
   },
 })

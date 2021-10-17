@@ -51,7 +51,7 @@ export default Vue.extend({
   layout: 'auth',
   methods: {
     login() {
-      this.$store.dispatch('setLog')
+      this.$store.dispatch('setLog', true)
       this.$router.push('/')
     },
   },

@@ -1,5 +1,6 @@
-import { GetterTree, ActionTree, MutationTree } from 'vuex'
-import api from '~/services/api'
+import { GetterTree, ActionTree, MutationTree } from 'vuex';
+import api from '~/services/api';
+import { Result, ServerResponse } from '~/types/moviesTypes.interfaces'
 
 export const state = () => ({
     users: [] as string[],
@@ -37,7 +38,7 @@ export const actions: ActionTree<RootState, RootState> = {
     async fetchMovies({ commit }) {
         try {
             commit('SETLOADED', true);
-            const movies = await this.$axios.$get('movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1')
+            const movies = await api.getAllMovies()
                 .then(data => data.results);
             commit('UPDATEMOVIES', movies)
             commit('SETLOADED', false);

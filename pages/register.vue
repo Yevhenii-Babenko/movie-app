@@ -61,8 +61,10 @@
 
 
 <script lang="ts">
-import Vue from 'vue'
-import Notification from '~/components/Notification.vue'
+import Vue from 'vue';
+import Notification from '~/components/Notification.vue';
+import axios from 'axios'
+
 export default Vue.extend({
   layout: 'auth',
   components: {
@@ -84,7 +86,12 @@ export default Vue.extend({
   methods: {
     async register() {
       try {
-        this.$router.push('/')
+        await this.$axios.post('register', {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        })
+        // this.$router.push('/')
       } catch (error) {
         console.log(error)
       }

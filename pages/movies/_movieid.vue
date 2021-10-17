@@ -1,8 +1,8 @@
 <template>
   <div class="container single-movie">
-    <!-- <Loading v-if="isLoading" /> -->
     <NuxtLink class="button" :to="{ name: 'index' }">Back</NuxtLink>
-    <div class="movie-info">
+    <Loading v-if="isLoading" />
+    <div v-else class="movie-info">
       <div class="movie-img">
         <img
           :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -27,7 +27,7 @@
         <p class="movie-fact"><span>Duration:</span> {{ movie.runtime }}</p>
         <p class="movie-fact">
           <span>Revenue:</span>
-         <!--  <span v-revenue></span> -->
+          {{ revenue }}
         </p>
         <p class="movie-fact"><span>Overview:</span> {{ movie.overview }}</p>
       </div>
@@ -44,10 +44,16 @@ export default Vue.extend({
   name: 'single-movie',
   async mounted() {
     this.$store.dispatch('fetchSingleMovieById', this.$route.params.movieid)
-    console.log(this.$route.params.movieid)
-    console.log('movie from page', this.movie)
   },
-  computed: mapGetters(['movie']),
+  computed: {
+    ...mapGetters(['movie', 'isLoading']),
+    revenue() {
+      return this.movie.revenue.toLocaleString('en-us', {
+        style: 'currency',
+        currency: 'USD',
+      })
+    },
+  },
 })
 </script>
 

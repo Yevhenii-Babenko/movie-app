@@ -75,7 +75,7 @@ export const actions: ActionTree<RootState, RootState> = {
             commit('UPDATESINGLEMOVIE', getMovie)
             const fetchDelay = () => setTimeout(() => {
                 commit('SETLOADED', false)
-            }, 1500);
+            }, 1000);
             fetchDelay();
         } catch (error) {
             console.error('cant\' load movie by id', error)

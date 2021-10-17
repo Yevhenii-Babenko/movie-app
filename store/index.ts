@@ -9,6 +9,7 @@ export const state = () => ({
     searchedMovies: [] as [],
     searchInput: '' as string,
     loadingState: false as boolean,
+    singlMovie: {} as {},
 })
 
 export type RootState = ReturnType<typeof state>
@@ -20,6 +21,7 @@ export const getters: GetterTree<RootState, RootState> = {
     searchMovies: state => state.searchedMovies,
     inputSearchMovie: state => state.searchInput,
     isLoading: state => state.loadingState,
+    movie: state => state.singlMovie,
 }
 export const mutations: MutationTree<RootState> = {
     CHANGE_NAME: (state, newName: string) => (state.name = newName),
@@ -29,6 +31,7 @@ export const mutations: MutationTree<RootState> = {
     UODATEINPUTFIELD: (state, payload) => (state.searchInput = payload),
     CLEARINPUT: (state, payload) => (state.searchInput = payload),
     SETLOADED: (state, payload) => (state.loadingState = payload),
+    UPDATESINGLEMOVIE: (state, payload) => (state.singlMovie = payload)
 }
 export const actions: ActionTree<RootState, RootState> = {
     async fetchMovies({ commit }) {
@@ -46,17 +49,40 @@ export const actions: ActionTree<RootState, RootState> = {
     setLog({ commit }) {
         commit('LOGGED', true)
     },
-    async fetctSearchedMovies(context, input) {
+    async fetctSearchedMovies({ commit }, input) {
         try {
-            context.commit('LOGGED', true);
+            commit('SETLOADED', true);
             const searchedMovies = await this.$axios.$get(`search/movie?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1&query=${input}`)
                 .then(data => data.results);
-            context.commit('UODATEINPUTFIELD', input);
-            context.commit('UPDATASEARCHEDMOVIES', searchedMovies);
-            context.commit('LOGGED', false);
+            commit('UODATEINPUTFIELD', input);
+            commit('UPDATASEARCHEDMOVIES', searchedMovies);
+            const fetchDelay = () => setTimeout(() => {
+                commit('SETLOADED', false)
+            }, 1000)
+                ;
+            fetchDelay()
+
             return searchedMovies;
         } catch (error) {
             console.error('error fetching searched movies', error)
         }
+    },
+    async fetchSingleMovieById({ commit }, id: number) {
+        try {
+            commit('SETLOADED', true);
+            const getMovie = await this.$axios.$get(`movie/${id}?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US`)
+                .then(data => data);
+            commit('UPDATESINGLEMOVIE', getMovie)
+            const fetchDelay = () => setTimeout(() => {
+                commit('SETLOADED', false)
+            }, 1500);
+            fetchDelay();
+        } catch (error) {
+            console.error('cant\' load movie by id', error)
+        }
     }
+}
+
+function data(arg0: string, data: any): ((reason: any) => PromiseLike<never>) | null | undefined {
+    throw new Error('Function not implemented.')
 }

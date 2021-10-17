@@ -1,6 +1,11 @@
 <template>
   <div class="search container">
-    <input @keyup.enter="inputFetchHandler" type="text" placeholder="Search" v-model="inputSearchMovie" />
+    <input
+      @keyup.enter="inputFetchHandler"
+      type="text"
+      placeholder="Search"
+      v-model="inputSearchMovie"
+    />
     <button
       @click="clearSearchInput"
       v-show="inputSearchMovie !== ''"
@@ -13,11 +18,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapGetters, mapActions, mapMutations, } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'Search',
-  computed: mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
+  computed: mapGetters([
+    'inputSearchMovie',
+    'searchMovies',
+    'inputSearchMovie',
+  ]),
   methods: {
     ...mapActions(['fetctSearchedMovies']),
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),

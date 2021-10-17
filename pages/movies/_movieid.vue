@@ -1,6 +1,6 @@
 <template>
-  <Loading v-if="$fetchState.pending" />
-  <div v-else class="container single-movie">
+  <div class="container single-movie">
+    <!-- <Loading v-if="isLoading" /> -->
     <NuxtLink class="button" :to="{ name: 'index' }">Back</NuxtLink>
     <div class="movie-info">
       <div class="movie-img">
@@ -27,12 +27,7 @@
         <p class="movie-fact"><span>Duration:</span> {{ movie.runtime }}</p>
         <p class="movie-fact">
           <span>Revenue:</span>
-          {{
-            movie.revenue.toLocaleString('en-us', {
-              style: 'currency',
-              currency: 'USD',
-            })
-          }}
+         <!--  <span v-revenue></span> -->
         </p>
         <p class="movie-fact"><span>Overview:</span> {{ movie.overview }}</p>
       </div>
@@ -42,39 +37,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Loading from '~/components/Loading.vue'
+import { mapGetters } from 'vuex'
 import api from '~/services/api'
-import {
-  RespAllMoviesDataStruct,
-  Result,
-  Movie,
-} from '~/types/moviesTypes.interfaces'
 
 export default Vue.extend({
-  components: { Loading },
   name: 'single-movie',
-
-  data(): {movie: []} {
-    return {
-      movie: [],
-    }
+  async mounted() {
+    this.$store.dispatch('fetchSingleMovieById', this.$route.params.movieid)
+    console.log(this.$route.params.movieid)
+    console.log('movie from page', this.movie)
   },
-  async fetch() {
-    await this.getSingleMovie()
-  },
-  fetchDelay: 1000,
-  methods: {
-    async getSingleMovie() {
-      try {
-        const response = await api.getSingleMovieById(
-          this.$route.params.movieid as unknown as number
-        )
-        this.movie = response.data
-      } catch (error) {
-        console.log(error)
-      }
-    },
-  },
+  computed: mapGetters(['movie']),
 })
 </script>
 

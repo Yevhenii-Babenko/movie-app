@@ -42,21 +42,39 @@
 </template>
 
 
-<script lang="ts">
-import Vue from 'vue'
-import { getters, RootState } from '~/store'
-import { mapActions, mapGetters } from 'vuex'
+<script>
+import Notification from '~/components/Notification'
 
-export default Vue.extend({
-  layout: 'auth',
-  methods: {
-    login() {
-      this.$store.dispatch('setLog', true)
-      this.$router.push('/')
-    },
+export default {
+  components: {
+    Notification,
   },
-  computed: mapGetters(['auth']),
-})
+
+  data() {
+    return {
+      email: '',
+      password: '',
+      error: null
+    }
+  },
+
+  methods: {
+    async login() {
+      try {
+        await this.$auth.loginWith('local', {
+          data: {
+          email: this.email,
+          password: this.password
+          }
+        })
+
+        this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

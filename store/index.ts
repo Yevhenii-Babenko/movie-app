@@ -15,9 +15,18 @@ export const state = () => ({
 
 export type RootState = ReturnType<typeof state>
 
+export const getters1 = {
+    isAuthenticated(state) {
+      return state.auth.loggedIn
+    },
+  
+    loggedInUser(state) {
+      return state.auth.user
+    }
+  },
 export const getters: GetterTree<RootState, RootState> = {
     name: state => state.name,
-    auth: state => state.auth,
+    iSAuthed: state => state.auth,
     movies: state => state.movies,
     searchMovies: state => state.searchedMovies,
     inputSearchMovie: state => state.searchInput,
@@ -46,9 +55,6 @@ export const actions: ActionTree<RootState, RootState> = {
         } catch (error) {
             console.error('error fetching movies', error)
         }
-    },
-    setLog({ commit }) {
-        commit('LOGGED', true)
     },
     async fetctSearchedMovies({ commit }, input) {
         try {

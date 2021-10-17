@@ -20,10 +20,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
+import {mapGetters} from 'vuex';
 
 export default Vue.extend({
   name: 'Navbar',
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+  }
 })
 </script>
 

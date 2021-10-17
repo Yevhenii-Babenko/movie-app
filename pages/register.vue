@@ -91,12 +91,20 @@ export default Vue.extend({
           email: this.email,
           password: this.password
         })
-        // this.$router.push('/')
-      } catch (error) {
-        console.log(error)
+        console.log('islogged', this.$store.state.auth.loggedIn)
+        /* await this.$auth.loginWith('local', {
+          data: {
+          email: this.email,
+          password: this.password
+          },
+        }) */
+
+        this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
       }
-    },
-  },
+    }
+  }
 })
 </script>
 

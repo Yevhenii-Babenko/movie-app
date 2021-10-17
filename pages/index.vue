@@ -2,8 +2,8 @@
   <section class="section">
     <Hero />
     <Search />
-    <Loading v-if="this.isLoading" />
-    <MovieGrid v-else />
+    <Loading v-if="isLoading" />
+    <MovieGridTeamplate v-else />
     <Footer />
   </section>
 </template>
@@ -11,7 +11,7 @@
 <script lang="ts">
 import Hero from '~/components/Hero.vue'
 import Search from '~/components/Search.vue'
-import MovieGrid from '~/components/MovieGrid.vue'
+import MovieGridTeamplate from '~/components/MovieGridTeamplate.vue'
 import Footer from '~/components/Footer.vue'
 import Loading from '~/components/Loading.vue'
 import Vue from 'vue'
@@ -25,7 +25,7 @@ export default Vue.extend({
   computed: mapGetters(['movies', 'auth', 'isLoading']),
   components: {
     Hero,
-    MovieGrid,
+    MovieGridTeamplate,
     Search,
     Footer,
     Loading,

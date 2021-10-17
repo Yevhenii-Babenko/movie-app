@@ -10,7 +10,7 @@
 import Vue from 'vue'
 import Hero from '~/components/Hero.vue'
 import Search from '~/components/Loading.vue'
-import MovieGrid from '~/components/MovieGrid.vue'
+import MovieGrid from '~/components/MovieGridTeamplate.vue'
 import { Result } from '~/types/moviesTypes.interfaces'
 import api from '~/services/api'
 

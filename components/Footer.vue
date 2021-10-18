@@ -1,89 +1,73 @@
 <template>
-  <footer>
-    <div class="flex-container">
-      <div class="top-row">
-        <div class="row__box1">
-          <h2 class="box1_item">Try for free!</h2>
-          <p class="box1_item">Get limited 1 week free try our features!</p>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="box">
+        <div class="box__item">
+          <div class="box-inner">
+            <h4 class="box-inner__title">Now Streaming</h4>
+            <div class="box-inner__paragraphs">
+              <p class="paragraphs__item">
+                Warehouse Society, 234 Bahagia Ave Street PRBW 29281
+              </p>
+              <p class="paragraphs__item">
+                © Now Streaming™, 2021. All rights reserved. Company
+                Registration Number: 21479524.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="row__box2">
-          <button class="top__btn">
-            <span>Learn more</span>
-          </button>
-          <button class="top__btn">
-            <span>Request Demo</span>
-            <img src="" alt="arrow" class="top__arrow" />
-          </button>
+        <div class="box__item">
+          <div class="box-inner">
+            <h4 class="box-inner__title">About</h4>
+            <ul class="list">
+              <li class="list__item">
+                <a href="#" class="list__link">Profile</a>
+              </li>
+              <li class="list__item">
+                <a href="#" class="list__link">Features</a>
+              </li>
+              <li class="list__item">
+                <a href="#" class="list__link">Careers</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="box__item">
+          <div class="box-inner">
+            <h4 class="box-inner__title">Help</h4>
+            <ul class="list">
+              <li class="list__item">
+                <a href="#" class="list__link">Support</a>
+              </li>
+              <li class="list__item">
+                <a href="#" class="list__link">Sign up</a>
+              </li>
+              <li class="list__item">
+                <a href="#" class="list__link">Guide</a>
+              </li>
+              <li class="list__item">
+                <a href="#" class="list__link">Reports</a>
+              </li>
+              <li class="list__item">
+                <a href="#" class="list__link">Q&A</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="box__item">
+          <div class="box-inner">
+            <h4 class="box-inner__title">Social Media</h4>
+            <div class="box-inner__social">
+              <img src="" alt="Facebook" class="img__item4" />
+              <img src="" alt="Twitter" class="img__item4" />
+              <img src="" alt="Instagram" class="img__item4" />
+            </div>
+            <!-- <div class="img-messenger">
+              <img src="" alt="Messenger" class="messenger" />
+            </div> -->
+          </div>
         </div>
       </div>
-      <div class="bottom-row">
-        <div class="btn__item1">
-          <div class="btn__logo">
-            <img class="btn__logo" src="" alt="Company logo" />
-            <h4 class="btn__logo">DataWarehouse</h4>
-          </div>
-          <p class="item1-p_1">
-            Warehouse Society, 234 Bahagia Ave Street PRBW 29281
-          </p>
-          <p class="item1-p_2">info@warehouse.project 1-232-3434 (Main)</p>
-          <p class="item1-p_3">
-            © Datawarehouse™, 2020. All rights reserved. Company Registration
-            Number: 21479524.
-          </p>
-        </div>
-        <div class="btn__item2">
-          <h4 class="btn__item2">About</h4>
-          <ul class="list__item2">
-            <li>
-              <a href="#" class="links-about">Profile</a>
-            </li>
-            <li>
-              <a href="#" class="links-about">Features</a>
-            </li>
-            <li>
-              <a href="#" class="links-about">Careers</a>
-            </li>
-            <li>
-              <a href="#" class="links-about">DW News</a>
-            </li>
-          </ul>
-        </div>
-        <div class="btn__item3">
-          <h4 class="btn__item2">Help</h4>
-          <ul class="list__item3">
-            <li>
-              <a href="#" class="links-help">Support</a>
-            </li>
-            <li>
-              <a href="#" class="links-help">Sign up</a>
-            </li>
-            <li>
-              <a href="#" class="links-help">Guide</a>
-            </li>
-            <li>
-              <a href="#" class="links-help">Reports</a>
-            </li>
-            <li>
-              <a href="#" class="links-help">Q&A</a>
-            </li>
-          </ul>
-        </div>
-        <div class="btn__item4">
-          <h4 class="btn__item4">Social Media</h4>
-          <div class="social-net">
-            <img src="" alt="Facebook" class="img__item4" />
-            <img src="" alt="Twitter" class="img__item4" />
-            <img src="" alt="Instagram" class="img__item4" />
-          </div>
-          <div class="img-messenger">
-            <img src="" alt="Messenger" class="messenger" />
-          </div>
-
-          <!--                    <img src="./assets/images/Group%2064.png" alt="Messenger" class="messenger">-->
-        </div>
-        <!--                <img src="./assets/images/Group%2064.png" alt="Messenger" class="messenger">-->
-      </div>
-      <!--            <img src="./assets/images/Group%2064.png" alt="Messenger" class="messenger">-->
     </div>
   </footer>
 </template>
@@ -95,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" >
-/* $header-bg-color: #333;
+$header-bg-color: #333;
 @mixin margin($margin: 0) {
   margin: 0;
 }
@@ -113,6 +97,59 @@ export default {
 @mixin theme($theme: $header-bg-color) {
   // background-color: $header-bg-color;
   border: $header-bg-color;
+}
+
+.footer {
+  padding: 30px 0;
+  width: 100vw;
+  &__container {
+    width: 70rem;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.box {
+  @include display-flex;
+  // justify-content: space-between;
+  gap: 10%;
+  color: #fff;
+  padding: 10px 0;
+  &__item {
+    &:nth-of-type(1) {
+      flex-shrink: 2;
+    }
+    @include display-flex;
+    flex-grow: 1;
+    padding: 0;
+    margin: 0;
+  }
+}
+.box-inner {
+  &__paragraphs {
+    @include display-flex;
+    flex-direction: column;
+  }
+}
+.paragraphs__item {
+  padding: 5px 0;
+  white-space: pre-line;
+  line-height: 25px;
+}
+.box__item:nth-of-type(1) > .box-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20%;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  &__link {
+    text-decoration: none;
+    color: #fff;
+  }
 }
 
 header {
@@ -133,7 +170,7 @@ header {
     flex-grow: 1;
     gap: 5%;
   }
- &__item {
+  &__item {
     &:first-of-type .navbar__link {
       color: red;
       transition: 0.5s ease-in-out all;
@@ -153,67 +190,22 @@ header {
     transition: 0.5s ease-in-out all;
     font-weight: bold;
   }
-} */
+}
 </style>
 <style scoped>
-.flex-container {
+/* .footer {
+  padding: 30px 0;
+}
+.footer__container {
   position: relative;
-  /*z-index: 10;*/
   margin-left: 240px;
   margin-right: 243px;
   display: flex;
   flex-direction: column;
-}
+} */
 
 .top-row {
   display: flex;
-}
-
-.row__box1 {
-  display: flex;
-  flex-direction: column;
-  width: 584px;
-  height: 101px;
-  gap: 20px;
-  margin-top: 100px;
-  margin-right: 123px;
-}
-
-.box1_item {
-  margin: 0;
-}
-
-.box1_item:nth-child(1) {
-  width: 405px;
-  height: 52px;
-  font-family: 'Helvetica', sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 130%;
-  display: flex;
-  align-items: center;
-  color: var(--color-2);
-}
-
-.box1_item:nth-child(2) {
-  width: 584px;
-  height: 29px;
-  font-family: 'Avenir', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 160%;
-  color: var(--color-1);
-}
-
-.row__box2 {
-  display: flex;
-  gap: 30px;
-  margin-top: 121px;
-  align-items: center;
-  width: 410px;
-  height: 60px;
 }
 
 .top__btn:first-of-type {

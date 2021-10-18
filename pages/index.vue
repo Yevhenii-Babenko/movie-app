@@ -18,7 +18,7 @@ import Vue from 'vue'
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default Vue.extend({
-  layout: 'authorisation',
+  // layout: 'authorisation',
   async mounted() {
     this.$store.dispatch('fetchMovies')
   },

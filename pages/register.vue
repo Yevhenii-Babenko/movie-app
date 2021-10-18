@@ -105,6 +105,7 @@ export default Vue.extend({
   &__title {
     font-weight: bold;
     margin-bottom: 10%;
+    color: #fff;
   }
   &-form {
     width: 100%;
@@ -116,6 +117,7 @@ export default Vue.extend({
     }
     &__label {
       font-weight: bold;
+      color: #fff;
     }
     &__control:nth-of-type(4) {
       margin: 5% 0;
@@ -140,9 +142,15 @@ export default Vue.extend({
   }
   .question-box {
     margin: 5% auto;
-    &__link{
+    color: #fff;
+    &__link {
       text-decoration: none;
       color: #c92502;
+      transition: 0.3s;
+      &:hover {
+      color: #891b02;
+      transition: 0.4s;
+        }
     }
   }
 }

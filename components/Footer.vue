@@ -60,13 +60,25 @@
           <div class="box-inner">
             <h4 class="box-inner__title">Social Media</h4>
             <div class="box-inner__social">
-              <img src="" alt="Facebook" class="img__item4" />
-              <img src="" alt="Twitter" class="img__item4" />
-              <img src="" alt="Instagram" class="img__item4" />
+              <a href="#"
+                ><img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/768px-Facebook_icon_2013.svg.png"
+                  alt="Facebook"
+                  class="box-inner__social__img"
+              /></a>
+              <a href="#"
+                ><img
+                  src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+                  alt="Twitter"
+                  class="box-inner__social__img"
+              /></a>
+              <a href="#"
+                ><img
+                  src="https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338393_960_720.png"
+                  alt="Instagram"
+                  class="box-inner__social__img"
+              /></a>
             </div>
-            <!-- <div class="img-messenger">
-              <img src="" alt="Messenger" class="messenger" />
-            </div> -->
           </div>
         </div>
       </div>
@@ -114,7 +126,6 @@ $header-bg-color: #333;
 }
 .box {
   @include display-flex;
-  // justify-content: space-between;
   gap: 10%;
   color: #fff;
   padding: 10px 0;
@@ -139,16 +150,27 @@ $header-bg-color: #333;
       margin-bottom: 0;
     }
   }
+  &__social {
+    &__img {
+      width: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1);
+      }
+    }
+  }
 }
 .paragraphs__item {
   padding: 5px 0;
   white-space: pre-line;
-  line-height: 25px;
+  line-height: 20px;
+  font-size: 13px;
 }
 .box__item:nth-of-type(1) > .box-inner {
   display: flex;
   flex-direction: column;
-  gap: 20%;
 }
 .list {
   list-style: none;
@@ -157,6 +179,12 @@ $header-bg-color: #333;
   &__link {
     text-decoration: none;
     color: #fff;
+  }
+}
+
+.list {
+  &__item {
+    margin: 10px 0;
   }
 }
 

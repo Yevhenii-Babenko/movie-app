@@ -71,11 +71,6 @@ export default Vue.extend({
 }
 .login {
   width: 30%;
-  margin: auto;
-  text-align: center;
-}
-.login {
-  width: 30%;
   margin: 8% auto;
   display: flex;
   flex-direction: column;

@@ -109,7 +109,6 @@ $header-bg-color: #333;
   @include padding($padding: 0);
 }
 @mixin theme($theme: $header-bg-color) {
-  // background-color: $header-bg-color;
   border: $header-bg-color;
 }
 
@@ -179,6 +178,11 @@ $header-bg-color: #333;
   &__link {
     text-decoration: none;
     color: #fff;
+    transition: 0.4s ease-in-out all;
+    &:hover {
+      color: red;
+      transition: 0.4s ease-in-out all;
+    }
   }
 }
 

@@ -4,21 +4,19 @@
     <Search />
     <Loading v-if="isLoading" />
     <MovieGridTeamplate v-else />
-    <Footer />
   </section>
 </template>
 
 <script lang="ts">
-import Hero from '~/components/Hero.vue'
-import Search from '~/components/Search.vue'
-import MovieGridTeamplate from '~/components/MovieGridTeamplate.vue'
-import Footer from '~/components/Footer.vue'
-import Loading from '~/components/Loading.vue'
-import Vue from 'vue'
-import { mapActions, mapMutations, mapGetters } from 'vuex'
+import Hero from '~/components/Hero.vue';
+import Search from '~/components/Search.vue';
+import MovieGridTeamplate from '~/components/MovieGridTeamplate.vue';
+import Loading from '~/components/Loading.vue';
+import Vue from 'vue';
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default Vue.extend({
-  layout: 'authorisation',
+  // layout: 'authorisation',
   async mounted() {
     this.$store.dispatch('fetchMovies')
   },
@@ -27,7 +25,6 @@ export default Vue.extend({
     Hero,
     MovieGridTeamplate,
     Search,
-    Footer,
     Loading,
   },
 })

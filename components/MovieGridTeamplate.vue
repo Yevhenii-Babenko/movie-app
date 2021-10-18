@@ -8,7 +8,10 @@
             alt="poster"
           />
           <p class="review">{{ movie.vote_average }}</p>
-          <p class="overview">{{ movie.overview }}</p>
+          <p class="overview">
+            {{ movie.overview.slice(0, 200) }}
+            <span v-if="movie.overview.length > 200"> ... </span>
+          </p>
         </div>
         <div class="info">
           <p class="title">

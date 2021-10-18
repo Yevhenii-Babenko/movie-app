@@ -4,7 +4,9 @@
       <div class="box">
         <div class="box__item">
           <div class="box-inner">
-            <h4 class="box-inner__title">Now Streaming</h4>
+            <h4 class="box-inner__title box-inner__title--modificator">
+              Now Streaming
+            </h4>
             <div class="box-inner__paragraphs">
               <p class="paragraphs__item">
                 Warehouse Society, 234 Bahagia Ave Street PRBW 29281
@@ -130,6 +132,12 @@ $header-bg-color: #333;
   &__paragraphs {
     @include display-flex;
     flex-direction: column;
+  }
+  &__title {
+    margin-bottom: 40%;
+    &--modificator {
+      margin-bottom: 0;
+    }
   }
 }
 .paragraphs__item {

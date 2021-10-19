@@ -62,12 +62,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Notification from '~/components/Notification.vue'
+
 export default Vue.extend({
-  layout: 'auth',
-  components: {
-    Notification,
-  },
   data(): {
     username: string
     email: string

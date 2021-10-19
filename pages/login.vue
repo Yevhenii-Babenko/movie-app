@@ -49,11 +49,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { getters, RootState } from '~/store'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
-  layout: 'auth',
   methods: {
     login() {
       this.$store.dispatch('setLog')

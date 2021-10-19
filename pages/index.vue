@@ -8,25 +8,14 @@
 </template>
 
 <script lang="ts">
-import Hero from '~/components/Hero.vue';
-import Search from '~/components/Search.vue';
-import MovieGridTeamplate from '~/components/MovieGridTeamplate.vue';
-import Loading from '~/components/Loading.vue';
 import Vue from 'vue';
-import { mapActions, mapMutations, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default Vue.extend({
-  // layout: 'authorisation',
   async mounted() {
     this.$store.dispatch('fetchMovies')
   },
   computed: mapGetters(['movies', 'auth', 'isLoading']),
-  components: {
-    Hero,
-    MovieGridTeamplate,
-    Search,
-    Loading,
-  },
 })
 </script>
 

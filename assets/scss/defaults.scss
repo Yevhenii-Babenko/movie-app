@@ -1,10 +1,5 @@
+@use './abstracts/' as *;
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500&display=swap');
-
-$main-font-family: 'Karla', sans-serif;
-$main-background-color: #211f1f;
-$btn-color: #c92502;
-$btn-hover-color: #891b02;
-$white-color: #fff;
 
 * {
     margin: 0;

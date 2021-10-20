@@ -54,8 +54,9 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
-.movies {
+<style lang="scss">
+@import '~/assets/scss/layout/movies-teamplate'; 
+/* .movies {
   padding: 32px 16px;
   .movies-grid {
     display: grid;
@@ -131,5 +132,5 @@ export default Vue.extend({
       }
     }
   }
-}
+} */
 </style>

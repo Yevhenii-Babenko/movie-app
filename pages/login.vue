@@ -63,65 +63,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-.login {
-  width: 30%;
-  margin: auto;
-  text-align: center;
-}
-.login {
-  width: 30%;
-  margin: 8% auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  &__title {
-    font-weight: bold;
-    margin-bottom: 10%;
-  }
-  &-form {
-    width: 100%;
-    &__input {
-      padding: 2% 2%;
-      width: 100%;
-      margin: 2% 0;
-      font-size: 16px;
-    }
-    &__label {
-      font-weight: bold;
-    }
-    &__control:nth-of-type(3) {
-      margin: 5% 0;
-    }
-    &__button {
-      width: 100%;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: bold;
-      color: inherit;
-      padding: 8px 16px;
-      background-color: #c92502;
-      border: none;
-      color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: 0.3s ease all;
-      &:hover {
-        background-color: #891b02;
-      }
-    }
-  }
-  .question-box {
-    margin: 5% auto;
-    &__link {
-      text-decoration: none;
-      color: #c92502;
-    }
-  }
-}
+@import '~/assets/scss/pages/login';
+@import '~/assets/scss/components/question-box';
+
 </style>

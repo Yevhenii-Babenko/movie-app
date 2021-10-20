@@ -1,7 +1,7 @@
 @import '../abstracts/';
 
 .movies {
-    padding: 32px 16px;
+    padding: 2rem 1rem;
     .movies-grid {
       display: grid;
       column-gap: 2rem;
@@ -33,6 +33,12 @@
             width: 100%;
             height: 100%;
           }
+          .default{
+            display: block;
+            object-fit: fill;
+            width: 15.25rem;
+            height: 22.875rem;
+          }
           .review {
             position: absolute;
             top: 0;
@@ -56,22 +62,22 @@
             padding: 12px;
             color: $white-color;
             transform: translateY(100%);
-            transition: 0.3s ease-in-out all;
+            transition: .3s ease-in-out all;
           }
         }
         .info {
           margin-top: auto;
           .title {
-            margin-top: 8px;
+            margin-top: .5rem;
             color: $white-color;
             font-size: 20px;
           }
           .release {
-            margin-top: 8px;
+            margin-top: .5rem;
             color: $white-color-lighte;
           }
           .button {
-            margin-top: 8px;
+            margin-top: .5rem;
           }
         }
       }

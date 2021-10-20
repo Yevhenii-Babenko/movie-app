@@ -6,11 +6,13 @@
       placeholder="Search"
       v-model="inputSearchMovie"
     />
+    <button v-if="!inputSearchMovie" style="width: 122px" class="button" @click="inputFetchHandler">Search</button>
     <button
       @click="clearSearchInput"
-      v-show="inputSearchMovie !== ''"
+      v-else
       class="button"
     >
+    <!--  v-show="inputSearchMovie !== ''" -->
       Clear Search
     </button>
   </div>
@@ -37,6 +39,10 @@ export default Vue.extend({
     inputFetchHandler(event: { target: { value: string } }) {
       this.fetctSearchedMovies(event.target.value)
     },
+    onClickHendler() {
+      // this.fetctSearchedMovies(this.inputSearchMovie)
+      console.log(this.inputSearchMovie.get())
+    }
   },
 })
 </script>

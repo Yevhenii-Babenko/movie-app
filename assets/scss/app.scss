@@ -1,5 +1,9 @@
-@use './abstracts/' as *;
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500&display=swap');
+/* @use './abstracts/' as a; */
+@import './abstracts/variables.scss';
+// @import './abstracts/mixins.scss';
+@import './abstracts/fonts.scss';
+@import './components/buttons.scss';
+@import './layout/navbar.scss';
 
 * {
     margin: 0;
@@ -7,30 +11,36 @@
     box-sizing: border-box;
     font-family: $main-font-family;
     scroll-behavior: smooth;
+    font-size: 1rem;
 };
+
+*::before ::after {
+    box-sizing: inherit;
+}
+
 .app {
     background-color: $main-background-color;
     min-height: 100vh;
 };
 
-.button {
+/* .button {
     display: inline-block;
     text-decoration: none;
     color: inherit;
     padding: 8px 16px;
-    background-color: $btn-color;
+    background-color: a.$main-color;
     border: none;
-    color: $white-color;
-    border-radius: 4px;
+    color: a.$white-color;
+    border-radius: 0.25rem;
     cursor: pointer;
     transition: 0.3s ease all;
     &:hover {
-        background-color: $btn-hover-color;
+        background-color: a.$btn-hover-color;
     }
-}
+} */
 
 .container {
-    width: 1100px;
+    width: 69rem;
     margin: 0 auto;
 }
 
@@ -38,6 +48,7 @@
 .page-leave-active {
     transition: opacity 0.5s;
 }
+
 .page-enter,
 .page-leave-to {
     opacity: 0;

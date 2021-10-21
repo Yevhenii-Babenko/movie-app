@@ -6,17 +6,18 @@
       placeholder="Search"
       v-model.trim="searchInput"
     />
+    <button @click.prevent="cleanSerch" v-if="searchMovies.length" class="button">
+      Clear Search
+    </button>
     <button
-      v-if="!searchMovies.length"
+      v-else
       style="width: 122px"
       class="button"
       @click.prevent="searchMovies"
     >
       Search
     </button>
-    <button @click.prevent="cleanSerch" v-else class="button">
-      Clear Search
-    </button>
+    
   </div>
 </template>
 

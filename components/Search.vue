@@ -11,14 +11,14 @@
       <button
         @click.prevent="cleanSerch"
         v-if="searchMovies.length"
-        class="button button--mod button--width"
+        class="button button--srch button--width"
       >
         Clear Search
       </button>
       <button
         v-else
         style="width: 7.625rem"
-        class="button button--mod button--width"
+        class="button button--srch button--width"
         type="submit"
       >
         Search

@@ -1,6 +1,9 @@
 <template>
   <div class="movie-info">
-    <div class="movie-img">
+    <button @click="increment">Increment</button>
+    <p>Counter : {{ counter }}</p>
+    <button @click="decrement">Decrement</button>
+    <!-- <div class="movie-img">
       <img
         :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
         alt="poster"
@@ -21,15 +24,29 @@
         {{ revenue }}
       </p>
       <p class="movie-fact"><span>Overview:</span> {{ movie.overview }}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
+@Component
+export default class SingleMovie extends Vue {
+  counter = 0
+
+  increment() {
+    this.counter++
+  }
+
+  decrement() {
+    this.counter--
+  }
+}
+/* import Vue from 'vue'
+import { mapGetters } from 'vuex' */
+
+/* export default Vue.extend({
   name: 'single-movie-by-id',
   computed: {
     ...mapGetters(['movie', 'isLoading']),
@@ -49,7 +66,7 @@ export default Vue.extend({
       })
     },
   },
-})
+}) */
 </script>
 
 <style lang="scss">

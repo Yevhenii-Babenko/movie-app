@@ -1,18 +1,20 @@
 <template>
   <div class="search container">
     <input
-      @keyup.enter="inputFetchHandler"
+      @keyup.enter="searchMovies"
       type="text"
       placeholder="Search"
-      v-model="inputSearchMovie"
+      v-model.trim="searchInput"
     />
-    <button v-if="!inputSearchMovie" style="width: 122px" class="button" @click="inputFetchHandler">Search</button>
     <button
-      @click="clearSearchInput"
-      v-else
+      v-if="!searchMovies.length"
+      style="width: 122px"
       class="button"
+      @click.prevent="searchMovies"
     >
-    <!--  v-show="inputSearchMovie !== ''" -->
+      Search
+    </button>
+    <button @click.prevent="cleanSerch" v-else class="button">
       Clear Search
     </button>
   </div>
@@ -24,25 +26,28 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'Search',
-  computed: mapGetters([
-    'inputSearchMovie',
-    'searchMovies',
-    'inputSearchMovie',
-  ]),
+  computed: {
+    ...mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
+    searchInput: {
+      get() {
+        return this.$store.state.searchInput
+      },
+      set(value) {
+        this.$store.commit('UODATEINPUTFIELD', value)
+      },
+    },
+  },
   methods: {
     ...mapActions(['fetctSearchedMovies']),
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
-    clearSearchInput() {
-      this.CLEARINPUT('')
-      this.UPDATASEARCHEDMOVIES([])
+    clearSearchInput() {},
+    searchMovies() {
+      this.$store.dispatch('fetctSearchedMovies', this.searchInput)
     },
-    inputFetchHandler(event: { target: { value: string } }) {
-      this.fetctSearchedMovies(event.target.value)
+    cleanSerch() {
+      this.$store.commit('CLEARINPUT', '')
+      this.$store.commit('UPDATASEARCHEDMOVIES', [])
     },
-    onClickHendler() {
-      // this.fetctSearchedMovies(this.inputSearchMovie)
-      console.log(this.inputSearchMovie.get())
-    }
   },
 })
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div class="search container">
     <input
-      @keyup.enter="searchMovies"
+      @keyup.enter="fetchMovies"
       type="text"
       placeholder="Search"
-      v-model.trim="searchInput"
+      v-model="searchInput"
     />
     <button @click.prevent="cleanSerch" v-if="searchMovies.length" class="button">
       Clear Search
@@ -13,7 +13,7 @@
       v-else
       style="width: 122px"
       class="button"
-      @click.prevent="searchMovies"
+      @click.prevent="fetchMovies"
     >
       Search
     </button>
@@ -42,7 +42,7 @@ export default Vue.extend({
     ...mapActions(['fetctSearchedMovies']),
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
     clearSearchInput() {},
-    searchMovies() {
+    fetchMovies() {
       this.$store.dispatch('fetctSearchedMovies', this.searchInput)
     },
     cleanSerch() {

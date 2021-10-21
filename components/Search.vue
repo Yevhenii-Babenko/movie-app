@@ -6,7 +6,11 @@
       placeholder="Search"
       v-model="searchInput"
     />
-    <button @click.prevent="cleanSerch" v-if="searchMovies.length" class="button">
+    <button
+      @click.prevent="cleanSerch"
+      v-if="searchMovies.length"
+      class="button"
+    >
       Clear Search
     </button>
     <button
@@ -17,7 +21,6 @@
     >
       Search
     </button>
-    
   </div>
 </template>
 
@@ -43,7 +46,9 @@ export default Vue.extend({
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
     clearSearchInput() {},
     fetchMovies() {
-      this.$store.dispatch('fetctSearchedMovies', this.searchInput)
+      if (this.searchInput) {
+        this.$store.dispatch('fetctSearchedMovies', this.searchInput)
+      }
     },
     cleanSerch() {
       this.$store.commit('CLEARINPUT', '')

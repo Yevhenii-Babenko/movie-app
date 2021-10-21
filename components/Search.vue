@@ -1,27 +1,30 @@
 <template>
-  <div class="search container">
-    <input
-      @keyup.enter="fetchMovies"
-      type="text"
-      placeholder="Search"
-      v-model="searchInput"
-    />
-    <button
-      @click.prevent="cleanSerch"
-      v-if="searchMovies.length"
-      class="button"
-    >
-      Clear Search
-    </button>
-    <button
-      v-else
-      style="width: 122px"
-      class="button"
-      @click.prevent="fetchMovies"
-    >
-      Search
-    </button>
-  </div>
+  <form @submit.prevent="fetchMovies">
+    <div class="search container">
+      <input
+        @keyup.enter="fetchMovies"
+        type="text"
+        placeholder="Search"
+        v-model="searchInput"
+        required
+      />
+      <button
+        @click.prevent="cleanSerch"
+        v-if="searchMovies.length"
+        class="button button--mod button--width"
+      >
+        Clear Search
+      </button>
+      <button
+        v-else
+        style="width: 7.625rem"
+        class="button button--mod button--width"
+        type="submit"
+      >
+        Search
+      </button>
+    </div>
+  </form>
 </template>
 
 <script lang="ts">

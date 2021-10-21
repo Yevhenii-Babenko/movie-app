@@ -2,7 +2,7 @@
     display: inline-block;
     text-decoration: none;
     color: inherit;
-    padding: 8px 16px;
+    padding: .5rem 1rem;
     background-color: $main-color;
     border: none;
     color: $white-color;
@@ -11,5 +11,16 @@
     transition: 0.3s ease all;
     &:hover {
         background-color: $btn-hover-color;
+    }
+    &--mod {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border: .125rem solid $main-color;
+        &:hover {
+            border-color: $btn-hover-color;
+        }
+    }
+    &--width {
+        min-width: 15ch;
     }
 }

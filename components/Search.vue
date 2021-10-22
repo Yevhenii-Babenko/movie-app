@@ -15,12 +15,7 @@
       >
         Clear Search
       </button>
-      <button
-        v-else
-        style="width: 7.625rem"
-        class="button button--srch button--width"
-        type="submit"
-      >
+      <button v-else class="button button--srch button--width" type="submit">
         Search
       </button>
     </div>
@@ -28,11 +23,36 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 
-export default Vue.extend({
-  name: 'Search',
+@Component({
+  computed: {
+    ...mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
+    ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
+  },
+  methods: mapActions(['fetctSearchedMovies']),
+})
+export default class Search extends Vue {
+  fetctSearchedMovies: any
+  name: string = 'Search'
+  async mounted() {
+    this.fetctSearchedMovies()
+  }
+  get searchInput() {
+    return this.$store.state.searchInput
+  }
+
+  fetchMovies() {
+    if (this.searchInput) {
+      this.$store.dispatch('fetctSearchedMovies', this.searchInput)
+    }
+  }
+  cleanSerch() {
+    this.$store.commit('CLEARINPUT', '')
+    this.$store.commit('UPDATASEARCHEDMOVIES', [])
+  }
+  /* name: 'Search',
   computed: {
     ...mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
     searchInput: {
@@ -57,8 +77,8 @@ export default Vue.extend({
       this.$store.commit('CLEARINPUT', '')
       this.$store.commit('UPDATASEARCHEDMOVIES', [])
     },
-  },
-})
+  }, */
+}
 </script>
 
 <style lang="scss">

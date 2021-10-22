@@ -1,9 +1,6 @@
 <template>
   <div class="movie-info">
-    <button @click="increment">Increment</button>
-    <p>Counter : {{ counter }}</p>
-    <button @click="decrement">Decrement</button>
-    <!-- <div class="movie-img">
+    <div class="movie-img">
       <img
         :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
         alt="poster"
@@ -24,49 +21,37 @@
         {{ revenue }}
       </p>
       <p class="movie-fact"><span>Overview:</span> {{ movie.overview }}</p>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { mapGetters } from 'vuex'
+import { Movie } from '~/types/moviesTypes.interfaces'
 
-@Component
-export default class SingleMovie extends Vue {
-  counter = 0
+@Component({
+  computed: mapGetters(['movie', 'isLoading']),
+})
+export default class SingleMovieClassComponent extends Vue {
+  movie!: Movie
 
-  increment() {
-    this.counter++
+  get revenue() {
+    return this.movie?.revenue
+      ? this.movie.revenue.toLocaleString('en-us', {
+          style: 'currency',
+          currency: 'USD',
+        })
+      : 0
   }
-
-  decrement() {
-    this.counter--
+  get released() {
+    return new Date(this.movie.release_date).toLocaleString('en-us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })
   }
 }
-/* import Vue from 'vue'
-import { mapGetters } from 'vuex' */
-
-/* export default Vue.extend({
-  name: 'single-movie-by-id',
-  computed: {
-    ...mapGetters(['movie', 'isLoading']),
-    revenue() {
-      return this.movie?.revenue
-        ? this.movie.revenue.toLocaleString('en-us', {
-            style: 'currency',
-            currency: 'USD',
-          })
-        : 0
-    },
-    released() {
-      return new Date(this.movie.release_date).toLocaleString('en-us', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      })
-    },
-  },
-}) */
 </script>
 
 <style lang="scss">

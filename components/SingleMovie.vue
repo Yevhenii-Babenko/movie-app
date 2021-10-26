@@ -53,46 +53,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.movie-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  color: #fff;
-  @media (min-width: 800px) {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .movie-img {
-    img {
-      max-height: 500px;
-      width: 100%;
-      @media (min-width: 800px) {
-        max-height: 700px;
-        width: initial;
-      }
-    }
-  }
-  .movie-content {
-    h1 {
-      font-size: 56px;
-      font-weight: 400;
-    }
-    .movie-fact {
-      margin-top: 12px;
-      font-size: 20px;
-      line-height: 1.5;
-      span {
-        font-weight: 600;
-        text-decoration: underline;
-      }
-    }
-    .tagline {
-      font-style: italic;
-      span {
-        font-style: normal;
-      }
-    }
-  }
-}
+@import '~/assets/scss/layout/single-movie';
 </style>

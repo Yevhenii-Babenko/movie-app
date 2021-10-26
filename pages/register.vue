@@ -62,12 +62,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Notification from '~/components/Notification.vue'
+
 export default Vue.extend({
-  layout: 'auth',
-  components: {
-    Notification,
-  },
   data(): {
     username: string
     email: string
@@ -94,64 +90,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.register {
-  width: 30%;
-  margin: 8% auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  &__title {
-    font-weight: bold;
-    margin-bottom: 10%;
-    color: #fff;
-  }
-  &-form {
-    width: 100%;
-    &__input {
-      padding: 2% 2%;
-      width: 100%;
-      margin: 2% 0;
-      font-size: 16px;
-    }
-    &__label {
-      font-weight: bold;
-      color: #fff;
-    }
-    &__control:nth-of-type(4) {
-      margin: 5% 0;
-    }
-    &__button {
-      width: 100%;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: bold;
-      color: inherit;
-      padding: 8px 16px;
-      background-color: #c92502;
-      border: none;
-      color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: 0.3s ease all;
-      &:hover {
-        background-color: #891b02;
-      }
-    }
-  }
-  .question-box {
-    margin: 5% auto;
-    color: #fff;
-    &__link {
-      text-decoration: none;
-      color: #c92502;
-      transition: 0.3s;
-      &:hover {
-      color: #891b02;
-      transition: 0.4s;
-        }
-    }
-  }
-}
+@import '~/assets/scss/components/question-box';
+@import '~/assets/scss/pages/register';
+
 </style>

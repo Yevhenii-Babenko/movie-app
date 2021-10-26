@@ -1,0 +1,15 @@
+@import '../abstracts/';
+@import '../components/buttons';
+
+.search {
+ @include display-flex;
+  padding: 2rem 1rem;
+  input {
+    max-width: 40ch;
+    width: 100%;
+    padding-left: .85rem;
+    font-size: 14px;
+    border: none;
+    outline: none;
+  }
+}

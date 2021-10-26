@@ -48,22 +48,21 @@
 
 
 <script lang="ts">
-import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  methods: {
-    login() {
-      this.$store.dispatch('setLog')
-      this.$router.push('/')
-    },
-  },
+@Component({
   computed: mapGetters(['auth']),
 })
+export default class Login extends Vue {
+  login() {
+    this.$store.dispatch('setLog')
+    this.$router.push('/')
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @import '~/assets/scss/pages/login';
 @import '~/assets/scss/components/question-box';
-
 </style>

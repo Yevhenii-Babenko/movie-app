@@ -16,8 +16,8 @@
           />
           <p class="review">{{ movie.vote_average }}</p>
           <p v-if="movie.overview" class="overview">
-            {{ movie.overview.slice(0, 200) }}
-            <span v-if="movie.overview.length > 200">...</span>
+            {{ movie.overview | cutsExtraLength(movie) }}
+            <!-- <span v-if="movie.overview.length > 200">...</span> -->
           </p>
           <p v-else class="overview">There is not overview do display</p>
         </div>
@@ -59,6 +59,23 @@ export default Vue.extend({
     },
   },
   name: 'MovieGrid',
+  filters: {
+    cutsExtraLength(value: any) {
+      console.log('value', value)
+      if (value.length > 200) {
+        return value
+          .slice(0, 200)
+          .replace(
+            /(^(\s+)|(\s+)$)/g,
+            (spaces: string) => spaces.replace(/\s/g, '') + '...'
+          )
+      } else {
+        return value
+          .slice(0)
+          .replace(/\.$/gm, '', (spaces: string) => spaces.replace(/\s/g, ''))
+      }
+    },
+  },
 })
 </script>
 

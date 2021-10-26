@@ -92,4 +92,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '~/assets/scss/components/question-box';
 @import '~/assets/scss/pages/register';
+
 </style>

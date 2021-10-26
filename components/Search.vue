@@ -31,53 +31,28 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
     ...mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
   },
-  methods: mapActions(['fetctSearchedMovies']),
+  methods: {
+    ...mapActions(['fetctSearchedMovies']),
+    cleanSerch: function () {
+      this.$store.commit('CLEARINPUT', '')
+      this.$store.commit('UPDATASEARCHEDMOVIES', [])
+    },
+  },
 })
 export default class Search extends Vue {
   fetctSearchedMovies: any
-  name: string = 'Search'
-  async mounted() {
-    this.fetctSearchedMovies()
-  }
+
   get searchInput() {
     return this.$store.state.searchInput
   }
 
+  set searchInput(value: string) {
+    this.$store.commit('UODATEINPUTFIELD', value)
+  }
+
   fetchMovies() {
-    if (this.searchInput) {
-      this.$store.dispatch('fetctSearchedMovies', this.searchInput)
-    }
+    this.$store.dispatch('fetctSearchedMovies', this.searchInput)
   }
-  cleanSerch() {
-    this.$store.commit('CLEARINPUT', '')
-    this.$store.commit('UPDATASEARCHEDMOVIES', [])
-  }
-  /* name: 'Search',
-  computed: {
-    ...mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
-    searchInput: {
-      get() {
-        return this.$store.state.searchInput
-      },
-      set(value) {
-        this.$store.commit('UODATEINPUTFIELD', value)
-      },
-    },
-  },
-  methods: {
-    ...mapActions(['fetctSearchedMovies']),
-    ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
-    clearSearchInput() {},
-    fetchMovies() {
-      if (this.searchInput) {
-        this.$store.dispatch('fetctSearchedMovies', this.searchInput)
-      }
-    },
-    cleanSerch() {
-      this.$store.commit('CLEARINPUT', '')
-      this.$store.commit('UPDATASEARCHEDMOVIES', [])
-    },
-  }, */
 }
 </script>
 

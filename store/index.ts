@@ -58,8 +58,7 @@ export const actions: ActionTree<RootState, RootState> = {
             commit('UPDATASEARCHEDMOVIES', searchedMovies);
             const fetchDelay = () => setTimeout(() => {
                 commit('SETLOADED', false)
-            }, 1000)
-                ;
+            }, 1000);
             fetchDelay()
 
             return searchedMovies;

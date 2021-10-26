@@ -33,6 +33,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxt/image',
+    '@nuxtjs/google-fonts'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,5 +53,11 @@ export default {
   },
   router: {
     base: '/movie-app/'
+  },
+
+  googleFonts: {
+    families: {
+      Karla: [200, 300, 400, 500],
+    }
   }
 }

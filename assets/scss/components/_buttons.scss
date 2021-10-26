@@ -12,15 +12,16 @@
     &:hover {
         background-color: $btn-hover-color;
     }
-    &--srch {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border: .125rem solid $main-color;
-        &:hover {
-            border-color: $btn-hover-color;
-        }
+}
+
+.button--srch {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: .125rem solid $main-color;
+    &:hover {
+        border-color: $btn-hover-color;
     }
-    &--width {
-        min-width: 15ch;
-    }
+}
+.button--width {
+    min-width: 15ch;
 }

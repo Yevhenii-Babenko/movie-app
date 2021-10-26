@@ -8,13 +8,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Vue, Component } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
-export default Vue.extend({
+@Component({
+  computed: mapGetters(['isLoading'])
+})
+export default class Index extends Vue {
   async mounted() {
     this.$store.dispatch('fetchMovies')
-  },
-  computed: mapGetters(['movies', 'auth', 'isLoading']),
-})
+  }
+}
 </script>

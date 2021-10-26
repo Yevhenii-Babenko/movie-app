@@ -46,17 +46,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
+import { Result } from '~/types/moviesTypes.interfaces'
 
-export default Vue.extend({
-  computed: {
-    ...mapGetters(['movies', 'searchMovies']),
-    moviesGrid() {
-      return this.searchMovies.length ? this.searchMovies : this.movies
-    },
-  },
-  name: 'MovieGrid',
+@Component({
+  computed: mapGetters(['movies', 'searchMovies']),
   filters: {
     cutsExtraOverview(value: string) {
       if (value.length > 200) {
@@ -77,6 +72,13 @@ export default Vue.extend({
     },
   },
 })
+export default class MovieGridTeamplate extends Vue {
+  searchMovies!: Result
+  movies!: Result
+  get moviesGrid() {
+    return this.searchMovies.length ? this.searchMovies : this.movies
+  }
+}
 </script>
 
 <style lang="scss">

@@ -26,30 +26,32 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
+import { Movie } from '~/types/moviesTypes.interfaces'
 
-export default Vue.extend({
-  name: 'single-movie-by-id',
-  computed: {
-    ...mapGetters(['movie', 'isLoading']),
-    revenue() {
-      return this.movie?.revenue
-        ? this.movie.revenue.toLocaleString('en-us', {
-            style: 'currency',
-            currency: 'USD',
-          })
-        : 0
-    },
-    released() {
-      return new Date(this.movie.release_date).toLocaleString('en-us', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      })
-    },
-  },
+@Component({
+  computed: mapGetters(['movie']),
 })
+export default class SingleMovieClassComponent extends Vue {
+  movie!: Movie
+
+  get revenue() {
+    return this.movie?.revenue
+      ? this.movie.revenue.toLocaleString('en-us', {
+          style: 'currency',
+          currency: 'USD',
+        })
+      : 0
+  }
+  get released() {
+    return new Date(this.movie.release_date).toLocaleString('en-us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })
+  }
+}
 </script>
 
 <style lang="scss">

@@ -1,0 +1,14 @@
+@import '../abstracts/';
+
+.single-movie {
+    color: $white-color;
+    min-height: 100vh;
+    @include display-flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 1rem;
+    .button {
+      align-self: flex-start;
+      margin-bottom: 2rem;
+    }
+  }

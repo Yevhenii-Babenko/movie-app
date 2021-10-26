@@ -50,8 +50,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
 import { Result } from '~/types/moviesTypes.interfaces'
 
-export default Vue.extend({
- /*  computed: {
+/*  computed: {
     ...mapGetters(['movies', 'searchMovies']),
     moviesGrid() {
       return this.searchMovies.length ? this.searchMovies : this.movies
@@ -76,15 +75,37 @@ export default Vue.extend({
       }
       return value
     },
-  },*/ 
+  },*/
+@Component({
+  computed: mapGetters(['movies', 'searchMovies']),
+  filters: {
+    cutsExtraOverview(value: string) {
+      if (value.length > 200) {
+        return value
+          .slice(0, 200)
+          .replace(
+            /(^(\s+)|(\s+)$)/g,
+            (spaces: string) => spaces.replace(/\s/g, '') + '...'
+          )
+      }
+      return value.slice(0).replace(/\.$/gm, '')
+    },
+    cutTitle(value: string) {
+      if (value.length > 20) {
+        return `${value.slice(0, 20).replace(/(^\s+|\s+$)/g, '')}...`
+      }
+      return value
+    },
+  },
 })
-/* export default class MovieGridTeamplate extends Vue {
+
+export default class MovieGridTeamplate extends Vue {
   searchMovies!: Result
   movies!: Result
   get moviesGrid() {
     return this.searchMovies.length ? this.searchMovies : this.movies
-  
-}  */
+  }
+}
 </script>
 
 <style lang="scss">

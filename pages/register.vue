@@ -52,7 +52,9 @@
 
         <div class="question-box">
           Already got an account?
-          <NuxtLink class="question-box__link" :to="{ name: 'login' }">Login</NuxtLink>
+          <NuxtLink class="question-box__link" :to="{ name: 'login' }"
+            >Login</NuxtLink
+          >
         </div>
       </div>
     </div>
@@ -61,36 +63,27 @@
 
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  data(): {
-    username: string
-    email: string
-    password: string
-    error: null | string
-  } {
-    return {
-      username: '',
-      email: '',
-      password: '',
-      error: null,
+@Component
+export default class Register extends Vue {
+  username!: string
+  email!: string
+  password!: string
+  error!: null | string
+
+  register() {
+    try {
+      this.$router.push('/')
+    } catch (error) {
+      console.log(error)
     }
-  },
-  methods: {
-    async register() {
-      try {
-        this.$router.push('/')
-      } catch (error) {
-        console.log(error)
-      }
-    },
-  },
-})
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
 @import '~/assets/scss/components/question-box';
 @import '~/assets/scss/pages/register';
-
 </style>

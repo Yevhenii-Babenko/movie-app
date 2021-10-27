@@ -5,14 +5,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-import LoginRegisterBar from '~/components/LoginRegisterBar.vue'
-export default Vue.extend({
-  components: {
-    LoginRegisterBar,}
-})
-</script>
 <style lang="scss" scoped>
   div {
     background-color: #333;

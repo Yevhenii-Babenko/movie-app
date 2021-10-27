@@ -1,19 +1,30 @@
 <template>
-  <div class="search container">
-    <input
-      @keyup.enter="inputFetchHandler"
-      type="text"
-      placeholder="Search"
-      v-model="inputSearchMovie"
-    />
-    <button
-      @click="clearSearchInput"
-      v-show="inputSearchMovie !== ''"
-      class="button"
-    >
-      Clear Search
-    </button>
-  </div>
+  <form @submit.prevent="fetchMovies">
+    <div class="search container">
+      <input
+        @keyup.enter="fetchMovies"
+        type="text"
+        placeholder="Search"
+        v-model="searchInput"
+        required
+      />
+      <button
+        @click.prevent="cleanSerch"
+        v-if="searchMovies.length"
+        class="button button--srch button--width"
+      >
+        Clear Search
+      </button>
+      <button
+        v-else
+        style="width: 7.625rem"
+        class="button button--srch button--width"
+        type="submit"
+      >
+        Search
+      </button>
+    </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -22,42 +33,34 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'Search',
-  computed: mapGetters([
-    'inputSearchMovie',
-    'searchMovies',
-    'inputSearchMovie',
-  ]),
+  computed: {
+    ...mapGetters(['inputSearchMovie', 'searchMovies', 'inputSearchMovie']),
+    searchInput: {
+      get() {
+        return this.$store.state.searchInput
+      },
+      set(value) {
+        this.$store.commit('UODATEINPUTFIELD', value)
+      },
+    },
+  },
   methods: {
     ...mapActions(['fetctSearchedMovies']),
     ...mapMutations(['CLEARINPUT', 'UPDATASEARCHEDMOVIES']),
-    clearSearchInput() {
-      this.CLEARINPUT('')
-      this.UPDATASEARCHEDMOVIES([])
+    clearSearchInput() {},
+    fetchMovies() {
+      if (this.searchInput) {
+        this.$store.dispatch('fetctSearchedMovies', this.searchInput)
+      }
     },
-    inputFetchHandler(event: { target: { value: string } }) {
-      this.fetctSearchedMovies(event.target.value)
+    cleanSerch() {
+      this.$store.commit('CLEARINPUT', '')
+      this.$store.commit('UPDATASEARCHEDMOVIES', [])
     },
   },
 })
 </script>
 
 <style lang="scss">
-.search {
-  display: flex;
-  padding: 32px 16px;
-  input {
-    max-width: 350px;
-    width: 100%;
-    padding: 12px 6px;
-    font-size: 14px;
-    border: none;
-    &:focus {
-      outline: none;
-    }
-  }
-  .button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-}
+@import '~/assets/scss/layout/search';
 </style>

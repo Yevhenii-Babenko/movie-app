@@ -9,13 +9,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import SingleMovie from '~/components/SingleMovie.vue'
 
 export default Vue.extend({
   name: 'single-movie',
-  components: {
-    SingleMovie,
-  },
   async mounted() {
     await this.$store.dispatch('fetchSingleMovieById', this.$route.params.movieid)
   },

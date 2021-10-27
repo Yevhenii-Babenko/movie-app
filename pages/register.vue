@@ -6,53 +6,53 @@
 
         <Notification :message="error" v-if="error" />
 
-        <form method="post" @submit.prevent="register">
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
+        <form class="register-form" method="post" @submit.prevent="register">
+          <div class="register-form__field">
+            <label class="register-form__label">Username</label>
+            <div class="register-form__control">
               <input
                 type="text"
-                class="input"
+                class="register-form__input"
                 name="username"
                 v-model="username"
                 required
               />
             </div>
           </div>
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
+          <div class="register-form__field">
+            <label class="register-form__label">Email</label>
+            <div class="register-form__control">
               <input
                 type="email"
-                class="input"
+                class="register-form__input"
                 name="email"
                 v-model="email"
                 required
               />
             </div>
           </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
+          <div class="register-form__field">
+            <label class="register-form__label">Password</label>
+            <div class="register-form__control">
               <input
                 type="password"
-                class="input"
+                class="register-form__input"
                 name="password"
                 v-model="password"
                 required
               />
             </div>
           </div>
-          <div class="control">
-            <button type="submit" class="button is-dark is-fullwidth">
+          <div class="register-form__control">
+            <button type="submit" class="register-form__button">
               Register
             </button>
           </div>
         </form>
 
-        <div class="has-text-centered" style="margin-top: 20px">
+        <div class="question-box">
           Already got an account?
-          <NuxtLink :to="{ name: 'login' }">Login</NuxtLink>
+          <NuxtLink class="question-box__link" :to="{ name: 'login' }">Login</NuxtLink>
         </div>
       </div>
     </div>
@@ -64,12 +64,9 @@
 import Vue from 'vue';
 import Notification from '~/components/Notification.vue';
 import axios from 'axios'
+// import Vue from 'vue'
 
 export default Vue.extend({
-  layout: 'auth',
-  components: {
-    Notification,
-  },
   data(): {
     username: string
     email: string
@@ -100,7 +97,7 @@ export default Vue.extend({
         }) */
 
         this.$router.push('/')
-      } catch (e) {
+      } catch (e: any) {
         this.error = e.response.data.message
       }
     }
@@ -109,9 +106,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.register {
-  width: 30%;
-  margin: auto;
-  text-align: center;
-}
+@import '~/assets/scss/components/question-box';
+@import '~/assets/scss/pages/register';
+
 </style>

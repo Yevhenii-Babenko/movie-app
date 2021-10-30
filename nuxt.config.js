@@ -1,5 +1,4 @@
 export default {
-  mode: 'spa',
   target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -41,6 +40,13 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxt/image',
+    [
+      'storyblok-nuxt',
+      {
+        accessToken: 'ECbkgkbnaafbGA4vVUkqQQtt',
+        cacheProvider: 'memory'
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -1,31 +1,36 @@
 <template>
-  <section class="section">
-    <Hero />
-    <Search />
-    <Loading v-if="isLoading" />
-    <MovieGridTeamplate v-else />
-  </section>
+  <h1>Hello from About</h1>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
+<script>
+export default {
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
 
-export default Vue.extend({
-  async mounted() {
-    this.$store.dispatch('fetchMovies')
+      storyblokInstance.on('input', (event) => {
+        if (Object.is(event.story.id, this.story.id)) {
+          this.story.content = event.story.content
+        }
+      })
+      storyblokInstance.on(['published', 'change'], (event) => {
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true
+        })
+      })
+    })
   },
-  computed: mapGetters(['movies', 'auth', 'isLoading']),
   async asyncData(context) {
     // const fullSlug = (context.route.path == '/' || context.route.path == '') ? 'home' : context.route.path
-    const storyblock = await context.app.$storyapi
+    const story = await context.app.$storyapi
       .get(`cdn/stories/home`, {
         version: 'draft',
       })
-      .then((res: any) => {
+      .then((res) => {
         return res.data
       })
-      .catch((res: any) => {
+      .catch((res) => {
         if (!res.response) {
           console.error(res)
           context.error({
@@ -40,7 +45,10 @@ export default Vue.extend({
           })
         }
       })
-    return storyblock
+    return story
   },
-})
+}
 </script>
+
+<style>
+</style>

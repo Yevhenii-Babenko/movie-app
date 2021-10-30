@@ -9,7 +9,7 @@
             >
           </li>
           <li class="navbar__item">
-            <NuxtLink class="navbar__link" :to="{ name: 'index' }"
+            <NuxtLink class="navbar__link" :to="{ name: 'about' }"
               >About</NuxtLink
             >
           </li>

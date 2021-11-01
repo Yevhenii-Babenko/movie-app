@@ -1,6 +1,7 @@
 <template>
   <div class="slide" v-editable="blok">
-    <img :src="blok.image">
+   <!--  <img :src="blok"> -->
+    <pre>{{blok}}</pre>
   </div>
 </template>
 

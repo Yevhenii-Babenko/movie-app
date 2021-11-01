@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss">
-.feature {
+.util__flex-eq {
   text-align: center;
   padding: 30px 10px 100px;
 }
@@ -34,4 +34,4 @@ export default {
 .feature__icon {
   max-width: 80px;
 }
-</script>
+</style>

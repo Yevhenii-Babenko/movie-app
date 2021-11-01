@@ -8,7 +8,6 @@
     @include theme($theme: $header-bg-color);
     @include display-flex;
     color: $white-color;
-    @include margin($margin: 0);
     overflow: hidden;
     width: 50%;
     margin-left: auto;

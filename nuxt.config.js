@@ -1,5 +1,6 @@
 export default {
-  target: 'static',
+  ssr: false,
+  target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'movie-app',

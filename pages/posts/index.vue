@@ -1,9 +1,13 @@
 <template>
-  <div>
+  <div class="container" style="display:flex; flex-direction: column; justify-content: center; align-items: center">
     <div v-for="post in posts" :key="post.id">
-      <h1>{{post.title}}</h1>
-      <p>{{post.content}}</p>
-      <img :src="post.img" alt="">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.content }}</p>
+      <img
+        :src="post.img"
+        alt="bunner"
+        style="width: 400px; height: 400px; object-fit: contain"
+      />
     </div>
   </div>
 </template>

@@ -1,6 +1,10 @@
 export default {
-  ssr: false,
-  target: 'static',
+  target: process.env.RENDERING_TARGET,
+  ssr: process.env.RENDERING_SSR,
+
+  // target: 'static',
+  // ssr: true,
+  
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'movie-app',
@@ -45,7 +49,7 @@ export default {
     [
       'storyblok-nuxt',
       {
-        accessToken: 'ECbkgkbnaafbGA4vVUkqQQtt',
+        accessToken: process.env.TOKEN_STORYBLOK,
         cacheProvider: 'memory'
       }
     ]

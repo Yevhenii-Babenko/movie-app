@@ -23,8 +23,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { Vue } from 'vue-property-decorator';
+import Component from 'vue-class-component';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 @Component({
   computed: {
@@ -34,24 +35,24 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
   methods: {
     ...mapActions(['fetctSearchedMovies']),
     cleanSerch: function () {
-      this.$store.commit('CLEARINPUT', '')
-      this.$store.commit('UPDATASEARCHEDMOVIES', [])
+      this.$store.commit('CLEARINPUT', '');
+      this.$store.commit('UPDATASEARCHEDMOVIES', []);
     },
   },
 })
 export default class Search extends Vue {
-  fetctSearchedMovies: any
+  fetctSearchedMovies: any;
 
   get searchInput() {
-    return this.$store.state.searchInput
+    return this.$store.state.searchInput;
   }
 
   set searchInput(value: string) {
-    this.$store.commit('UODATEINPUTFIELD', value)
+    this.$store.commit('UODATEINPUTFIELD', value);
   }
 
   fetchMovies() {
-    this.$store.dispatch('fetctSearchedMovies', this.searchInput)
+    this.$store.dispatch('fetctSearchedMovies', this.searchInput);
   }
 }
 </script>

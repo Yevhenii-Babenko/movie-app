@@ -1,19 +1,19 @@
 @import 'variables.scss';
 
 @mixin margin($margin: 0) {
-    margin: 0;
-  }
-  @mixin padding($padding: 0) {
-    padding: 0;
-  }
-  @mixin display-flex {
-    display: flex;
-  }
-  @mixin list-style {
-    list-style-type: none;
-    @include margin($margin: 0);
-    @include padding($padding: 0);
-  }
-  @mixin theme($theme: $header-bg-color) {
-    border: $header-bg-color;
-  }
+  margin: 0;
+}
+@mixin padding($padding: 0) {
+  padding: 0;
+}
+@mixin display-flex {
+  display: flex;
+}
+@mixin list-style {
+  list-style-type: none;
+  @include margin($margin: 0);
+  @include padding($padding: 0);
+}
+@mixin theme($theme: $header-bg-color) {
+  border: $header-bg-color;
+}

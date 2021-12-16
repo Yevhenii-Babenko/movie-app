@@ -26,15 +26,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import { mapGetters } from 'vuex'
-import { Movie } from '~/types/moviesTypes.interfaces'
+import { Vue, Component } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
+import { Movie } from '~/types/moviesTypes.interfaces';
 
 @Component({
   computed: mapGetters(['movie']),
 })
 export default class SingleMovieClassComponent extends Vue {
-  movie!: Movie
+  movie!: Movie;
 
   get revenue() {
     return this.movie?.revenue
@@ -42,14 +42,14 @@ export default class SingleMovieClassComponent extends Vue {
           style: 'currency',
           currency: 'USD',
         })
-      : 0
+      : 0;
   }
   get released() {
     return new Date(this.movie.release_date).toLocaleString('en-us', {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
-    })
+    });
   }
 }
 </script>

@@ -61,26 +61,24 @@
   </section>
 </template>
 
-
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class Register extends Vue {
-  username!: string
-  email!: string
-  password!: string
-  error!: null | string
+  username!: string;
+  email!: string;
+  password!: string;
+  error!: null | string;
 
   register() {
     try {
-      this.$router.push('/')
+      this.$router.push('/');
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>

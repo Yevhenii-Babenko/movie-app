@@ -46,9 +46,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import { mapGetters } from 'vuex'
-import { Result } from '~/types/moviesTypes.interfaces'
+import { Vue, Component } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
+import { Result } from '~/types/moviesTypes.interfaces';
 
 @Component({
   computed: mapGetters(['movies', 'searchMovies']),
@@ -60,23 +60,23 @@ import { Result } from '~/types/moviesTypes.interfaces'
           .replace(
             /(^(\s+)|(\s+)$)/g,
             (spaces: string) => spaces.replace(/\s/g, '') + '...'
-          )
+          );
       }
-      return value.slice(0).replace(/\.$/gm, '')
+      return value.slice(0).replace(/\.$/gm, '');
     },
     cutTitle(value: string) {
       if (value.length > 20) {
-        return `${value.slice(0, 20).replace(/(^\s+|\s+$)/g, '')}...`
+        return `${value.slice(0, 20).replace(/(^\s+|\s+$)/g, '')}...`;
       }
-      return value
+      return value;
     },
   },
 })
 export default class MovieGridTeamplate extends Vue {
-  searchMovies!: Result
-  movies!: Result
+  searchMovies!: Result;
+  movies!: Result;
   get moviesGrid() {
-    return this.searchMovies.length ? this.searchMovies : this.movies
+    return this.searchMovies.length ? this.searchMovies : this.movies;
   }
 }
 </script>

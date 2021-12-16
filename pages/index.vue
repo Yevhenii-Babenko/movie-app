@@ -12,11 +12,11 @@ import { Vue, Component } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
 @Component({
-  computed: mapGetters(['isLoading'])
+  computed: mapGetters(['isLoading']),
 })
 export default class Index extends Vue {
   async mounted() {
-    this.$store.dispatch('fetchMovies')
+    this.$store.dispatch('fetchMovies');
   }
 }
 </script>

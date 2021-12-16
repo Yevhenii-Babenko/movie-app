@@ -1,9 +1,9 @@
 @import '../abstracts/';
 
 .question-box {
-    margin: 5% auto;
-    &__link {
-      text-decoration: none;
-      color: $main-color;
-    }
+  margin: 5% auto;
+  &__link {
+    text-decoration: none;
+    color: $main-color;
   }
+}

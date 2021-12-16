@@ -46,18 +46,17 @@
   </section>
 </template>
 
-
 <script lang="ts">
-import { mapGetters } from 'vuex'
-import { Vue, Component } from 'vue-property-decorator'
+import { mapGetters } from 'vuex';
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component({
   computed: mapGetters(['auth']),
 })
 export default class Login extends Vue {
   login() {
-    this.$store.dispatch('setLog')
-    this.$router.push('/')
+    this.$store.dispatch('setLog');
+    this.$router.push('/');
   }
 }
 </script>

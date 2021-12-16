@@ -1,44 +1,44 @@
 @import '../abstracts/';
 
 .movie-info {
-    @include display-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    color: $white-color;
-    @media (min-width: 50rem) {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-    .movie-img {
-      img {
-        max-height: 31.25rem;
-        width: 100%;
-        @media (min-width: 50rem) {
-          max-height: 43.75rem;
-          width: initial;
-        }
+  @include display-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  color: $white-color;
+  @media (min-width: 50rem) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .movie-img {
+    img {
+      max-height: 31.25rem;
+      width: 100%;
+      @media (min-width: 50rem) {
+        max-height: 43.75rem;
+        width: initial;
       }
     }
-    .movie-content {
-      h1 {
-        font-size: 3.5rem;
-        font-weight: 400;
-      }
-      .movie-fact {
-        margin-top: 12px;
-        font-size: 1.25rem;
-        line-height: 1.5;
-        span {
-          font-weight: 600;
-          text-decoration: underline;
-        }
-      }
-      .tagline {
-        font-style: italic;
-        span {
-          font-style: normal;
-        }
+  }
+  .movie-content {
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 400;
+    }
+    .movie-fact {
+      margin-top: 12px;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      span {
+        font-weight: 600;
+        text-decoration: underline;
       }
     }
+    .tagline {
+      font-style: italic;
+      span {
+        font-style: normal;
+      }
+    }
+  }
 }

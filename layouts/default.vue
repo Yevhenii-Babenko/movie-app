@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="app">
     <Navbar />
     <Nuxt keep-alive />

@@ -5,25 +5,22 @@ export default {
   head: {
     title: 'movie-app',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/scss/app.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -33,7 +30,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxt/image',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -45,19 +42,18 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://api.themoviedb.org/3/'
+    baseURL: 'https://api.themoviedb.org/3/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
+  build: {},
   router: {
-    base: '/movie-app/'
+    base: '/movie-app/',
   },
 
   googleFonts: {
     families: {
       Karla: [200, 300, 400, 500],
-    }
-  }
-}
+    },
+  },
+};

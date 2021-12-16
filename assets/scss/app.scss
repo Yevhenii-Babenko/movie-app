@@ -1,35 +1,35 @@
- @import './abstracts/';
+@import './abstracts/';
 @import './components/buttons';
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: $main-font-family;
-    scroll-behavior: smooth;
-    font-size: 1rem;
-};
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $main-font-family;
+  scroll-behavior: smooth;
+  font-size: 1rem;
+}
 
 *::before ::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .app {
-    background-color: $main-background-color;
-    min-height: 100vh;
-};
+  background-color: $main-background-color;
+  min-height: 100vh;
+}
 
 .container {
-    width: 69rem;
-    margin: 0 auto;
+  width: 69rem;
+  margin: 0 auto;
 }
 
 .page-enter-active,
 .page-leave-active {
-    transition: opacity 0.5s;
+  transition: opacity 0.5s;
 }
 
 .page-enter,
 .page-leave-to {
-    opacity: 0;
+  opacity: 0;
 }

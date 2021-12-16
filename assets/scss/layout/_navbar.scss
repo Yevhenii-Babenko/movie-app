@@ -2,97 +2,97 @@
 @import '../abstracts/variables.scss';
 
 .wrapper {
-    padding: 30px 0;
-  }
-  .navbar {
-    @include theme($theme: $header-bg-color);
+  padding: 30px 0;
+}
+.navbar {
+  @include theme($theme: $header-bg-color);
+  @include display-flex;
+  color: $white-color;
+  @include margin($margin: 0);
+  overflow: hidden;
+  width: 50%;
+  margin-left: auto;
+  &__list {
     @include display-flex;
-    color: $white-color;
-    @include margin($margin: 0);
-    overflow: hidden;
-    width: 50%;
-    margin-left: auto;
-    &__list {
-      @include display-flex;
-      @include list-style;
-      flex-grow: 1;
-      gap: 5%;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    &__item {
-      &:first-of-type .navbar__link {
-        color: $link-color;
-        transition: 0.3s ease-in-out all;
-        &:hover {
-          color: $white-color;
-          transition: 0.5s ease-in-out all;
-        }
-      }
-      &:last-of-type {
-        width: 30%;
-      }
-      &:last-of-type .navbar__link {
-        font-size: inherit;
-        box-sizing: border-box;
-        font-weight: bold;
-        position: relative;
-        vertical-align: middle;
-        background-color: $main-color;
-        color: $white-color;
-        display: inline-block;
-        height: 2.188rem;
-        text-align: center;
-        transition: 0.5s;
-        padding: 0 20px;
-        cursor: pointer;
-        border-radius: 4px;
-        border: 0.125rem solid  $main-color;
-        outline: none;
-        transition: 0.5s;
-        &:hover {
-          border: .125rem solid $header-bg-color;
-          background-color: $main-background-color;
-          color: $link-color;
-        }
-        &::before,
-        &::after {
-          width: 100%;
-          height: 100%;
-          z-index: 3;
-          content: ' ';
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform: scale(0);
-          transition: 0.5s;
-        }
-        &:hover::after,
-        &:hover::before {
-          transform: scale(1);
-        }
-      }
-      .navbar__link__outline {
-        &::before {
-          border-bottom: 0.125rem solid  $link-color;
-          border-left: 0.125rem solid  $link-color;
-          transform-origin: 0% 100%;
-        }
-        &::after {
-          border-top: 0.125rem solid  $link-color;
-          border-right: 0.125rem solid  $link-color;
-          transform-origin: 100% 0%;
-        }
-      }
-    }
-    &__link {
+    @include list-style;
+    flex-grow: 1;
+    gap: 5%;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &__item {
+    &:first-of-type .navbar__link {
+      color: $link-color;
+      transition: 0.3s ease-in-out all;
       &:hover {
-        color: $link-color;
-        transition: 0.3s ease-in-out all;
+        color: $white-color;
+        transition: 0.5s ease-in-out all;
       }
-      text-decoration: none;
-      color: $white-color;
-      transition: 0.5s ease-in-out all;
-      font-weight: bold;
     }
+    &:last-of-type {
+      width: 30%;
+    }
+    &:last-of-type .navbar__link {
+      font-size: inherit;
+      box-sizing: border-box;
+      font-weight: bold;
+      position: relative;
+      vertical-align: middle;
+      background-color: $main-color;
+      color: $white-color;
+      display: inline-block;
+      height: 2.188rem;
+      text-align: center;
+      transition: 0.5s;
+      padding: 0 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 0.125rem solid $main-color;
+      outline: none;
+      transition: 0.5s;
+      &:hover {
+        border: 0.125rem solid $header-bg-color;
+        background-color: $main-background-color;
+        color: $link-color;
+      }
+      &::before,
+      &::after {
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scale(0);
+        transition: 0.5s;
+      }
+      &:hover::after,
+      &:hover::before {
+        transform: scale(1);
+      }
+    }
+    .navbar__link__outline {
+      &::before {
+        border-bottom: 0.125rem solid $link-color;
+        border-left: 0.125rem solid $link-color;
+        transform-origin: 0% 100%;
+      }
+      &::after {
+        border-top: 0.125rem solid $link-color;
+        border-right: 0.125rem solid $link-color;
+        transform-origin: 100% 0%;
+      }
+    }
+  }
+  &__link {
+    &:hover {
+      color: $link-color;
+      transition: 0.3s ease-in-out all;
+    }
+    text-decoration: none;
+    color: $white-color;
+    transition: 0.5s ease-in-out all;
+    font-weight: bold;
+  }
 }

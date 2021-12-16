@@ -44,7 +44,6 @@ $header-bg-color: #333;
   @include padding($padding: 0);
 }
 @mixin theme($theme: $header-bg-color) {
-  // background-color: $header-bg-color;
   border: $header-bg-color;
 }
 
@@ -55,7 +54,6 @@ $header-bg-color: #333;
   @include theme($theme: $header-bg-color);
   @include display-flex;
   color: #fff;
-  // @include margin($margin: 0);
   overflow: hidden;
   width: 50%;
   margin-left: auto;

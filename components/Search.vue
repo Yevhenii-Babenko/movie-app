@@ -41,10 +41,9 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
   },
 })
 export default class Search extends Vue {
-  fetctSearchedMovies: any;
 
-  get searchInput() {
-    return this.$store.state.searchInput;
+  get searchInput(): string {
+    return this.$store.state.searchInput || '';
   }
 
   set searchInput(value: string) {

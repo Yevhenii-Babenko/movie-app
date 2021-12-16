@@ -26,7 +26,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue } from 'vue-property-decorator';
+import Component from 'vue-class-component';
 import { mapGetters } from 'vuex';
 import { Movie } from '~/types/moviesTypes.interfaces';
 

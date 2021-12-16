@@ -41,7 +41,6 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
   },
 })
 export default class Search extends Vue {
-
   get searchInput(): string {
     return this.$store.state.searchInput || '';
   }

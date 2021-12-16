@@ -44,7 +44,7 @@ export const actions: ActionTree<RootState, RootState> = {
         )
         .then((data) => {
           commit('SETLOADED', false);
-          return data.results
+          return data.results;
         });
       commit('UPDATEMOVIES', movies);
       return movies;

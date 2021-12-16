@@ -42,11 +42,13 @@ export const actions: ActionTree<RootState, RootState> = {
         .$get(
           'movie/now_playing?api_key=84a698300a40f7d90c5505eebd96b53b&language=en-US&page=1'
         )
-        .then((data) => {
-          commit('SETLOADED', false);
-          return data.results;
-        });
+        .then((data) => data.results);
       commit('UPDATEMOVIES', movies);
+      const fetchDelay = () =>
+      setTimeout(() => {
+        commit('SETLOADED', false);
+      }, 1000);
+    fetchDelay();
       return movies;
     } catch (error) {
       console.error('error fetching movies', error);
